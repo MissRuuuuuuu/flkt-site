@@ -1,29 +1,60 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import Vue from "vue";
+import Router from "vue-router";
 
-Vue.use(VueRouter)
+import Home from "../pages/Home.vue";
+import About from "../pages/About.vue";
+import FloatingKnight from "../pages/FloatingKnight.vue";
+import Science from "../pages/Science.vue";
+import MarketEU from "../pages/MarketEU.vue";
+import ProductSoothingGel from "../pages/ProductSoothingGel.vue";
+import MarketCN from "../pages/MarketCN.vue";
+import Contact from "../pages/Contact.vue";
+import Legal from "../pages/Legal.vue";
+import Products from "../pages/Products.vue";
+
+Vue.use(Router);
+
+const langGuard = (to, from, next) => {
+  const lang = to.params.lang;
+  if (!["en", "zh"].includes(lang)) return next("/en");
+  next();
+};
 
 const routes = [
   {
-    path: '/',
-    name: 'home',
-    component: HomeView
+    path: "/:lang(en|zh)",
+    beforeEnter: langGuard,
+    component: { render: (h) => h("router-view") }, // simple layout wrapper
+    children: [
+      { path: "", name: "home", component: Home },
+      { path: "about", name: "about", component: About },
+      { path: "floating-knight", name: "floating", component: FloatingKnight },
+      { path: "science", name: "science", component: Science },
+
+      { path: "eu", name: "eu", component: MarketEU },
+      { path: "eu/products/:slug", name: "eu-product", component: ProductSoothingGel },
+
+      { path: "cn", name: "cn", component: MarketCN },
+      { path: "contact", name: "contact", component: Contact },
+      { path: "legal", name: "legal", component: Legal },
+      { path: "products",name: "Products", component: Products,}
+    ],
   },
+
+  // root redirect → pick saved locale, default en
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-  }
-]
+    path: "/",
+    redirect: () => {
+      const saved = localStorage.getItem("sb_locale") || "en";
+      return `/${saved}`;
+    },
+  },
 
-const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes
-})
+  // fallback
+  { path: "*", redirect: "/en" },
+];
 
-export default router
+export default new Router({
+  mode: "history",
+  routes,
+});
