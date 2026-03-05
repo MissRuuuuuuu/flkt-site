@@ -1,2 +1,19 @@
-body { background: #fff; }
-a { text-decoration: none; }
+body{
+  background:#fff;
+  font-family:"Pluto", system-ui, -apple-system, sans-serif;
+  font-weight:300;              /* ✅ 默认 Pluto-Light */
+  letter-spacing:-0.05em;
+}
+a{ text-decoration:none; }
+
+/* 小标题（例如 PRODUCTS、section title） */
+.kicker,
+.ctaTitle{
+  font-weight:500;              /* ✅ Pluto-Medium */
+}
+
+/* 大标题（例如 H1/H2 或主标题） */
+h1, h2, .headline,
+.brand{
+  font-weight:700;              /* ✅ Pluto-Bold */
+}

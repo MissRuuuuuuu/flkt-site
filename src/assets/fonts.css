@@ -1,0 +1,49 @@
+/* Matrix Script (可能用于logo) */
+@font-face {
+  font-family: "MatrixII";
+  src: url("./fonts/MatrixIIScriptOT-Reg.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+/* Pluto family */
+
+@font-face {
+  font-family: "Pluto";
+  src: url("./fonts/Pluto-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Pluto";
+  src: url("./fonts/Pluto-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Pluto";
+  src: url("./fonts/Pluto-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Pluto";
+  src: url("./fonts/Pluto-Bold.woff2") format("woff2");
+  font-weight: 900;
+  font-display: swap;
+}
+
+
+/* Snell Script */
+
+@font-face {
+  font-family: "SnellBT";
+  src: url("./fonts/SnellBT-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}

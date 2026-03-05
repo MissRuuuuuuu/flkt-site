@@ -6,10 +6,10 @@ export const cmsData = {
   //  Home
   home: {
   hero: {
-    title: { zh: "SILVER BULLET®", en: "SILVER BULLET®" },
+    title: { zh: "SILVER BULLET", en: "SILVER BULLET" },
     headline: {
       zh: "为世界减少不适\n以精准、快速、温和的方式，\n帮助身体回归平衡与舒适。",
-      en: "Relieving discomfort,\nwith precision, speed, and care.",
+      en: "In the fields of health & beauty, \nwe solve difficult problems\nin a simple way.",
     },
     subhead: {
       zh: "一个源于科学与人文的健康品牌\n专注于多用途、可持续的舒缓解决方案",

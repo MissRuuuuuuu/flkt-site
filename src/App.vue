@@ -4,80 +4,81 @@
       toggleable="lg"
       type="light"
       variant="white"
-      class="border-bottom w-100 topNav"
+      class="w-100 topNav"
     >
-      <b-container fluid>
+      <!-- 顶部蓝色渐变遮罩：视觉上“盖在银光背景上”，底部透明渐隐 -->
+      <div class="navOverlay" aria-hidden="true"></div>
+
+      <b-container fluid class="navInner">
         <!-- Left: Logo -->
         <b-navbar-brand :to="withLang('/')" router class="brand">
-          SILVER BULLET®
-        </b-navbar-brand>
+  <img class="navLogo" :src="logo" alt="Silver Bullet" />
+</b-navbar-brand>
 
-        <!-- Mobile toggle -->
         <b-navbar-toggle target="sb-nav-collapse" />
 
-        <!-- Collapse -->
         <b-collapse id="sb-nav-collapse" is-nav>
-          <!-- Full-width row inside collapse -->
           <div class="w-100 d-lg-flex align-items-lg-center">
-            <!-- Center: Nav links -->
             <b-navbar-nav class="mx-lg-auto justify-content-lg-center nav-center">
               <b-nav-item :to="withLang('/')" router exact>
                 {{ $t("nav.home") }}
               </b-nav-item>
 
-           <!-- Products Nav Item -->
-<div
- class="navItem navItemDropdown"
-  @mouseenter="openProductsMenu"
-  @mouseleave="closeProductsMenuDelayed"
-  @focusin="openProductsMenu"
-  @focusout="onProductsFocusOut"
->
-  <router-link
-class="nav-link productsLink"
-  :class="{ 'router-link-exact-active': isProductsActive, 'router-link-active': isProductsActive }"
-  :to="withLang('/products')"
-  @focus="openProductsMenu"
-  @blur="closeProductsMenuDelayed"
->
-  Products
-</router-link>
+              <!-- Products Nav Item -->
+              <div
+                class="navItem navItemDropdown"
+                @mouseenter="openProductsMenu"
+                @mouseleave="closeProductsMenuDelayed"
+                @focusin="openProductsMenu"
+                @focusout="onProductsFocusOut"
+              >
+                <router-link
+                  class="nav-link productsLink"
+                  :class="{
+                    'router-link-exact-active': isProductsActive,
+                    'router-link-active': isProductsActive
+                  }"
+                  :to="withLang('/products')"
+                  @focus="openProductsMenu"
+                  @blur="closeProductsMenuDelayed"
+                >
+                  Products
+                </router-link>
 
-  <!-- Dropdown -->
-  <div
-      v-show="productsMenuOpen"
-  class="productsDropdown"
-  role="menu"
-  @mouseenter="openProductsMenu"
-  @mouseleave="closeProductsMenuDelayed"
-  >
-    <div class="productsDropdownInner">
- <router-link
-  class="ddItem"
-  :to="{ path: withLang('/products'), query: { line: 'soothing' } }"
-  @click.native="closeProductsMenu"
->
-  Soothing
-</router-link>
+                <div
+                  v-show="productsMenuOpen"
+                  class="productsDropdown"
+                  role="menu"
+                  @mouseenter="openProductsMenu"
+                  @mouseleave="closeProductsMenuDelayed"
+                >
+                  <div class="productsDropdownInner">
+                    <router-link
+                      class="ddItem"
+                      :to="{ path: withLang('/products'), query: { line: 'soothing' } }"
+                      @click.native="closeProductsMenu"
+                    >
+                      Soothing
+                    </router-link>
 
-<router-link
-  class="ddItem"
-  :to="{ path: withLang('/products'), query: { line: 'post-procedures' } }"
-  @click.native="closeProductsMenu"
->
-  Post-procedures
-</router-link>
+                    <router-link
+                      class="ddItem"
+                      :to="{ path: withLang('/products'), query: { line: 'post-procedures' } }"
+                      @click.native="closeProductsMenu"
+                    >
+                      Post-procedures
+                    </router-link>
 
-<router-link
-  class="ddItem"
-  :to="{ path: withLang('/products'), query: { line: 'anti-aging' } }"
-  @click.native="closeProductsMenu"
->
-  Anti-aging
-</router-link>
-    </div>
-  </div>
-</div>
+                    <router-link
+                      class="ddItem"
+                      :to="{ path: withLang('/products'), query: { line: 'anti-aging' } }"
+                      @click.native="closeProductsMenu"
+                    >
+                      Anti-aging
+                    </router-link>
+                  </div>
+                </div>
+              </div>
 
               <b-nav-item :to="withLang('/science')" router>
                 {{ $t("nav.science") }}
@@ -86,52 +87,7 @@ class="nav-link productsLink"
               <b-nav-item :to="withLang('/contact')" router>
                 {{ $t("nav.contact") }}
               </b-nav-item>
-
-              <!-- <b-nav-item :to="withLang('/legal')" router>
-                {{ $t("nav.legal") }}
-              </b-nav-item> -->
             </b-navbar-nav>
-
-            <!-- Right: Language -->
-            <!-- <div class="lang-wrap ml-lg-auto mt-3 mt-lg-0">
-              <span class="lang-label d-none d-lg-inline mr-2">
-                {{ $t("ui.language") }}:
-              </span> -->
-
-              <!-- Desktop: two buttons -->
-              <!-- <b-button-group class="d-none d-lg-inline-flex">
-                <b-button
-                  :variant="locale === 'zh' ? 'dark' : 'outline-secondary'"
-                  size="sm"
-                  @click="switchLang('zh')"
-                >
-                  {{ $t("ui.zh") }}
-                </b-button>
-                <b-button
-                  :variant="locale === 'en' ? 'dark' : 'outline-secondary'"
-                  size="sm"
-                  @click="switchLang('en')"
-                >
-                  {{ $t("ui.en") }}
-                </b-button>
-              </b-button-group> -->
-
-              <!-- Mobile: dropdown -->
-              <!-- <b-dropdown
-                class="d-lg-none"
-                size="sm"
-                variant="outline-secondary"
-                right
-                :text="locale === 'zh' ? $t('ui.zh') : $t('ui.en')"
-              >
-                <b-dropdown-item @click="switchLang('zh')">
-                  {{ $t("ui.zh") }}
-                </b-dropdown-item>
-                <b-dropdown-item @click="switchLang('en')">
-                  {{ $t("ui.en") }}
-                </b-dropdown-item>
-              </b-dropdown> -->
-            <!-- </div> -->
           </div>
         </b-collapse>
       </b-container>
@@ -141,59 +97,59 @@ class="nav-link productsLink"
       <router-view />
     </main>
 
-    <!-- Footer -->
+
     <footer class="siteFooter">
-  <div class="footerInner">
-    <div class="footerCol">
-      <div class="footerTitle">Company</div>
-      <router-link class="footerLink" :to="withLang('/about')">About</router-link>
-    </div>
+      <div class="footerInner">
+        <div class="footerCol">
+          <div class="footerTitle">Company</div>
+          <router-link class="footerLink" :to="withLang('/about')">About</router-link>
+        </div>
 
-    <div class="footerCol">
-      <div class="footerTitle">Social</div>
-      <a class="footerLink" href="https://facebook.com" target="_blank" rel="noopener">Facebook</a>
-      <a class="footerLink" href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
-      <a class="footerLink" href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
-      <a class="footerLink" href="https://x.com" target="_blank" rel="noopener">X</a>
-    </div>
+        <div class="footerCol">
+          <div class="footerTitle">Social</div>
+          <a class="footerLink" href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
+        </div>
 
-    <div class="footerCol footerRight">
-      <div class="copyright">
-        © 2025 Silver Bullet. All Rights Reserved.<br />
-        Owned by Floating Knight
+        <div class="footerCol footerRight">
+          <div class="copyright">
+            © 2026 Silver Bullet. All Rights Reserved.<br />
+            Owned by Floating Knight
+          </div>
+          <div class="copyright">Terms & Conditions</div>
+        </div>
       </div>
-    </div>
-  </div>
-</footer>
-
+      <div class="footerStick" aria-hidden="true"></div>
+    </footer>
   </div>
 </template>
 
 <script>
 import { setLocale } from "./i18n";
-
+import logo from "@/assets/svbt_logo.png";
 export default {
   name: "App",
   data() {
-  return {
-    productsMenuOpen: false,
-    productsMenuTimer: null,
-  };
-},
+    return {
+      logo,
+      productsMenuOpen: false,
+      productsMenuTimer: null,
+      
+      // ====== Metal shine parallax ======
+      _rafId: null,
+      _pendingY: null,
+      _onScrollBound: null,
+    };
+  },
   computed: {
     locale() {
       return this.$i18n.locale;
     },
-    // 可选：让 Products 在 products 相关路由时高亮
-  isProductsActive() {
-   const p = this.$route.path || "";
-  return (
-    p.includes("/products") ||        // 产品列表（含 query）
-    p.includes("/eu/products")  ||        // 产品详情页
-    p.includes("/zh/products")       // 产品详情页
-  );
+    isProductsActive() {
+      const p = this.$route.path || "";
+      return p.includes("/products") || p.includes("/eu/products") || p.includes("/zh/products");
+    },
   },
-  },
+
   methods: {
     withLang(path) {
       const lang =
@@ -209,78 +165,254 @@ export default {
       setLocale(next);
       this.$router.push(`/${next}${rest || ""}`);
     },
+
     openProductsMenu() {
-    if (this.productsMenuTimer) {
-      clearTimeout(this.productsMenuTimer);
-      this.productsMenuTimer = null;
-    }
-    this.productsMenuOpen = true;
-  },
-
-  closeProductsMenu() {
-    if (this.productsMenuTimer) {
-      clearTimeout(this.productsMenuTimer);
-      this.productsMenuTimer = null;
-    }
-    this.productsMenuOpen = false;
-  },
-
-  closeProductsMenuDelayed() {
-    if (this.productsMenuTimer) clearTimeout(this.productsMenuTimer);
-    this.productsMenuTimer = setTimeout(() => {
+      if (this.productsMenuTimer) {
+        clearTimeout(this.productsMenuTimer);
+        this.productsMenuTimer = null;
+      }
+      this.productsMenuOpen = true;
+    },
+    closeProductsMenu() {
+      if (this.productsMenuTimer) {
+        clearTimeout(this.productsMenuTimer);
+        this.productsMenuTimer = null;
+      }
       this.productsMenuOpen = false;
-      this.productsMenuTimer = null;
-    }, 120); // 你可以调成 80~200
-  },
-    onProductsFocusOut(e) {
-    // focus 离开 dropdown 容器时关闭（给个微小延迟，避免点 link 时闪）
-    window.setTimeout(() => {
-      const root = this.$el.querySelector(".navItemDropdown");
-      if (!root) return;
-      if (!root.contains(document.activeElement)) this.closeProductsMenu();
-    }, 0);
+    },
+    closeProductsMenuDelayed() {
+      if (this.productsMenuTimer) clearTimeout(this.productsMenuTimer);
+      this.productsMenuTimer = setTimeout(() => {
+        this.productsMenuOpen = false;
+        this.productsMenuTimer = null;
+      }, 120);
+    },
+    onProductsFocusOut() {
+      window.setTimeout(() => {
+        const root = this.$el.querySelector(".navItemDropdown");
+        if (!root) return;
+        if (!root.contains(document.activeElement)) this.closeProductsMenu();
+      }, 0);
     },
     onNavKeydown(e) {
-    if (e.key === "Escape") this.closeProductsMenu();
+      if (e.key === "Escape") this.closeProductsMenu();
     },
-  },
-mounted() {
-  window.addEventListener("keydown", this.onNavKeydown);
-},
-beforeDestroy() {
-   window.removeEventListener("keydown", this.onNavKeydown);
-  if (this.productsMenuTimer) clearTimeout(this.productsMenuTimer);
-},
 
+
+// ====== Shine parallax: scroll -> CSS var --shineY ======
+    applyShine() {
+      this._rafId = null;
+      if (this._pendingY == null) return;
+      document.documentElement.style.setProperty("--shineY", `${this._pendingY}%`);
+    },
+    updateShineFromScroll() {
+      const doc = document.documentElement;
+      const scrollTop = window.scrollY || doc.scrollTop || 0;
+      const maxScroll = Math.max(1, (doc.scrollHeight - window.innerHeight));
+
+      // 0..1
+      const t = Math.min(1, Math.max(0, scrollTop / maxScroll));
+      const base = 44;
+      const amp = 4;
+
+      // 用 ease 让变化更顺滑
+      const eased = t * t * (3 - 2 * t);
+
+      this._pendingY = base + (eased - 0.5) * 2 * amp;
+
+      if (this._rafId) return;
+      this._rafId = window.requestAnimationFrame(this.applyShine);
+    },
+
+  },
+  mounted() {
+    window.addEventListener("keydown", this.onNavKeydown);
+    // 初始化亮带位置
+    document.documentElement.style.setProperty("--shineY", "44%");
+
+    // 绑定滚动监听（RAF 节流）
+    this._onScrollBound = this.updateShineFromScroll.bind(this);
+    window.addEventListener("scroll", this._onScrollBound, { passive: true });
+    // 进入页面先跑一次
+    this.updateShineFromScroll();
+  },
+  beforeDestroy() {
+    window.removeEventListener("keydown", this.onNavKeydown);
+    if (this.productsMenuTimer) clearTimeout(this.productsMenuTimer);
+
+    if (this._onScrollBound) window.removeEventListener("scroll", this._onScrollBound);
+    if (this._rafId) window.cancelAnimationFrame(this._rafId);
+  },
 };
 </script>
 
 <style scoped>
+/* =========================
+   Global layout
+   ========================= */
 .app {
-  min-height: 100vh;
+ min-height: 100vh;
   display: flex;
   flex-direction: column;
+ /* 默认值（JS 会实时更新） */
+  --shineY: 44%;
+  background:
+    /* subtle metal grain */
+    repeating-linear-gradient(
+      180deg,
+      rgba(255,255,255,0.05) 0px,
+      rgba(255,255,255,0.05) 1px,
+      rgba(0,0,0,0.03) 2px,
+      rgba(0,0,0,0.03) 3px
+    ),
+
+    /* sharp highlight band */
+ /* 锐利金属反光带（使用 calc() 将亮带锚定到 --shineY） */
+    linear-gradient(
+      180deg,
+      #bdbdbd 0%,
+      #cfcfcf calc(var(--shineY) - 26%),
+      #e3e3e3 calc(var(--shineY) - 10%),
+
+      #ffffff calc(var(--shineY) - 1.2%),
+      #ffffff var(--shineY),
+      #ffffff calc(var(--shineY) + 1.2%),
+
+      #e3e3e3 calc(var(--shineY) + 10%),
+      #cfcfcf calc(var(--shineY) + 26%),
+      #bdbdbd 100%
+    );
+
+  background-blend-mode: overlay, normal;
 }
+
 .main {
   flex: 1;
 }
 
-/* Logo */
-.brand {
-  font-weight: 900;
-  letter-spacing: 0.6px;
+/* 你原本写在 body 的 font-family 放这里更稳（scoped 不会影响 body） */
+.app {
+  font-family: "Pluto", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
 }
 
-/* Keep nav centered visually */
+
+.topNav {
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+ /* 关键：不要纯白底，改为“蓝渐变盖在金属上” */
+  background: linear-gradient(
+    180deg,
+    rgba(0, 30, 230, 0.55) 0%,
+    rgba(0, 30, 230, 0.18) 55%,
+    rgba(0, 30, 230, 0.00) 100%
+  ) !important;
+
+  /* 让金属底透出来 */
+  backdrop-filter: saturate(140%) blur(6px);
+  -webkit-backdrop-filter: saturate(140%) blur(6px);
+
+  /* border-bottom: 1px solid rgba(0,0,0,0.06) !important; */
+}
+
+/* overlay 是蓝色渐变，底部透明渐隐 */
+.navOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 180px;   
+  z-index: 0;
+  pointer-events: none;
+
+  /* 蓝色从顶往下淡出到透明，像“盖上去” */
+  background: linear-gradient(
+    180deg,
+    rgba(0, 30, 230, 0.95) 0%,
+    rgba(0, 30, 230, 0.60) 22%,
+    rgba(0, 30, 230, 0.22) 48%,
+    rgba(0, 30, 230, 0.00) 78%
+  );
+
+  /* 微微柔化边缘，让它更像光 */
+  filter: saturate(110%) blur(0px);
+}
+
+/* nav 内容要盖在 overlay 上面 */
+.navInner {
+  position: relative;
+  z-index: 1;
+}
+
+/* 给 navbar 留一个“视觉高度”，避免 overlay 看起来太薄 */
+::v-deep .navbar {
+  padding-top: 10px;
+  padding-bottom: 8px;
+}
+
+/* =========================
+   Nav links styling on blue
+   ========================= */
 .nav-center {
   gap: 10px;
 }
-/* nav 容器必须 relative，dropdown 才能贴住 nav 底边 */
-.navBar {
-  position: sticky; /* 你之前要滚动也可点击 nav，这里建议 sticky */
-  top: 0;
-  z-index: 50;
-  background: #fff;
+
+.navLogo {
+  height: 36px;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.navLogo:hover {
+  opacity: 0.85;
+}
+
+::v-deep .navbar-nav .nav-link {
+  position: relative;
+  padding-bottom: 8px;
+  color: rgba(255,255,255,0.92) !important;
+  transition: opacity 0.15s ease, color 0.15s ease;
+  text-shadow: 0 1px 0 rgba(0,0,0,0.10);
+}
+
+::v-deep .navbar-brand {
+  color: rgba(255,255,255,0.92) !important;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-shadow: 0 1px 0 rgba(0,0,0,0.12);
+}
+
+/* underline */
+::v-deep .navbar-nav .nav-link::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  right: 50%;
+  bottom: 2px;
+  height: 3px;
+  background: rgba(255,255,255,0.95); /* 白色下划线更像在蓝光上 */
+  opacity: 0;
+  transition: left 0.18s ease, right 0.18s ease, opacity 0.18s ease;
+}
+
+::v-deep .navbar-nav .nav-link:hover::after {
+  left: 10%;
+  right: 10%;
+  opacity: 0.35;
+}
+
+::v-deep .navbar-nav .nav-link.router-link-exact-active {
+  font-weight: 800;
+  opacity: 1;
+}
+
+::v-deep .navbar-nav .nav-link.router-link-exact-active::after {
+  left: 0;
+  right: 0;
+  opacity: 1;
+}
+
+::v-deep .navbar-nav .nav-link:not(.router-link-exact-active) {
+  opacity: 0.86;
 }
 
 /* dropdown 包裹 */
@@ -288,22 +420,23 @@ beforeDestroy() {
   position: relative;
 }
 
-/* 下拉面板：紧贴 nav 下边 */
+/* dropdown panel 仍然用白底，保证可读性 */
 .productsDropdown {
   position: absolute;
-  top: calc(100% + 8px); /* 如果你要“紧贴”，改成 0；想留一点缝就 8px */
+  top: calc(100% + 8px);
   left: 50%;
   transform: translateX(-50%);
   min-width: 260px;
-pointer-events: auto;
-  background: #fff;
-  border: 1px solid #eee;
+  pointer-events: auto;
+  background: rgba(255,255,255,0.96);
+  border: 1px solid rgba(0,0,0,0.06);
   border-radius: 14px;
   box-shadow: 0 12px 30px rgba(0,0,0,0.10);
   padding: 10px;
   z-index: 999;
 }
-/* ✅ 关键：不要被 navbar 的容器裁切 */
+
+/* ✅ 防止被 navbar 容器裁切 */
 ::v-deep .navbar-nav,
 ::v-deep .navbar-collapse,
 ::v-deep .navbar,
@@ -311,16 +444,12 @@ pointer-events: auto;
   overflow: visible !important;
 }
 
-
-/* 让它视觉上“贴住”nav：你要完全贴就用 top: 100% + border-top */
 .productsDropdownInner {
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
 
-
-/* 每个选项 */
 .ddItem {
   display: block;
   padding: 10px 12px;
@@ -333,61 +462,27 @@ pointer-events: auto;
 .ddItem:hover {
   background: #f6f6f6;
 }
-/* 所有导航项统一 */
-.navLink {
-  display: inline-flex;        /* ✅ 不会“偏高/偏低” */
-  align-items: center;         /* ✅ 垂直居中 */
-  /* gap: 6px; */
-  padding: 12px 12px 6px;
-  /* color: #111;            */
-  text-decoration: none;       /* ✅ 去下划线 */
-  /* font-weight: 500; */
-  line-height: 1;              /* ✅ 防止基线不一致 */
-  cursor: pointer;
-}
 
-/* 浏览器默认 a:link / a:visited 颜色也一起压掉 */
-.navLink:link,
-.navLink:visited {
-  color: #111;
-  text-decoration: none;
-}
-
-/* hover */
-.navLink:hover {
-  color: #111;
-  text-decoration: none;
-}
-
+/* Products link alignment */
 .productsLink {
   display: inline-flex;
   align-items: center;
-  line-height: 1.5;     /* 和 Bootstrap nav-link 接近 */
-  padding-top: 0.5rem;  /* 对齐 b-nav-item */
+  line-height: 1.5;
+  padding-top: 0.5rem;
   padding-bottom: 0.5rem;
 }
 
-/* Language area */
-.lang-wrap {
-  display: flex;
-  align-items: center;
-}
-.lang-label {
-  font-size: 12px;
-  color: #666;
-}
-.topNav {
-  position: sticky;
-  top: 0;
-  z-index: 9999;
-  background: #fff;
-}
-/* Footer */
+/* =========================
+   Footer: keep clean on silver
+   ========================= */
 .siteFooter {
-  border-top: 1px solid #eee;
-  background: #fff;
+  border-top: 1px solid rgba(0,0,0,0.08);
+  background: transparent;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   padding: 22px 0;
 }
+
 .footerInner {
   max-width: 1100px;
   margin: 0 auto;
@@ -395,70 +490,60 @@ pointer-events: auto;
   display: flex;
   gap: 24px;
 }
-.footerCol { min-width: 160px; }
-.footerTitle { font-weight: 800; margin-bottom: 10px; }
+
+.footerCol {
+  min-width: 160px;
+}
+.footerTitle {
+  font-weight: 800;
+  margin-bottom: 10px;
+}
 .footerLink {
   display: block;
   color: #111;
   text-decoration: none;
   margin: 6px 0;
 }
-.footerLink:hover { text-decoration: underline; }
-.footerRight { margin-left: auto; text-align: right; }
-.copyright { color: #444; line-height: 1.6;font-size: 12px; }
+.footerLink:hover {
+  text-decoration: underline;
+}
+.footerRight {
+  margin-left: auto;
+  text-align: right;
+}
+.copyright {
+  color: #444;
+  line-height: 1.6;
+  font-size: 12px;
+}
 
 @media (max-width: 820px) {
-  .footerInner { flex-direction: column; }
-  .footerRight { margin-left: 0; text-align: left; }
+  .footerInner {
+    flex-direction: column;
+  }
+  .footerRight {
+    margin-left: 0;
+    text-align: left;
+  }
 }
 
-/* =========================
-   Nav underline interactions
-   ========================= */
-
-/* Ensure we can draw underline per-link */
-::v-deep .navbar-nav .nav-link {
-  position: relative;
-  padding-bottom: 8px;
-  color: #111;
-  transition: opacity 0.15s ease;
+.siteFooter {
+  position: relative; /* ✅ 关键：让竖线 bottom:0 以 footer 为参考 */
+  border-top: 1px solid rgba(0,0,0,0.08);
+  background: transparent;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 22px 0; /* footer 内容可以有 padding，不影响竖线贴底 */
 }
 
-/* Hover (not active): subtle underline animation */
-::v-deep .navbar-nav .nav-link::after {
-  content: "";
+.footerStick {
   position: absolute;
   left: 50%;
-  right: 50%;
-  bottom: 2px;
-  height: 3px;
+  bottom: 0;                 /* ✅ 贴着 footer 最底部 */
+  transform: translateX(-50%);
+  width: 30px;               /* 你截图看起来挺粗：可改 40/48/56 */
+  height: 100px;             /* 你之前提到 160px：这里就用 160 */
   background: #001EE6;
-  opacity: 0;
-  transition: left 0.18s ease, right 0.18s ease, opacity 0.18s ease;
-}
-
-/* On hover, show underline */
-::v-deep .navbar-nav .nav-link:hover::after {
-  left: 10%;
-  right: 10%;
-  opacity: 0.35; /* subtle for hover */
-}
-
-/* Active: bold + full underline */
-::v-deep .navbar-nav .nav-link.router-link-exact-active {
-  font-weight: 800;
-  opacity: 1;
-}
-
-/* Active underline stronger + full width */
-::v-deep .navbar-nav .nav-link.router-link-exact-active::after {
-  left: 0;
-  right: 0;
-  opacity: 1; /* strong for active */
-}
-
-/* Make inactive slightly softer */
-::v-deep .navbar-nav .nav-link:not(.router-link-exact-active) {
-  opacity: 0.82;
+  pointer-events: none;
 }
 </style>

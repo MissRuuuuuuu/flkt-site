@@ -6,6 +6,7 @@ import LangMixin from "./mixins/lang";
 
 import BootstrapVue from "bootstrap-vue";
 import "./assets/app.css";
+import "@/assets/fonts.css";
 
 
 // ✅ 引入 Bootstrap & BootstrapVue 样式
