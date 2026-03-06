@@ -6,25 +6,22 @@
       variant="white"
       class="w-100 topNav"
     >
-      <!-- 顶部蓝色渐变遮罩：视觉上“盖在银光背景上”，底部透明渐隐 -->
       <div class="navOverlay" aria-hidden="true"></div>
 
       <b-container fluid class="navInner">
-        <!-- Left: Logo -->
         <b-navbar-brand :to="withLang('/')" router class="brand">
-  <img class="navLogo" :src="logo" alt="Silver Bullet" />
-</b-navbar-brand>
+          <img class="navLogo" :src="logo" alt="Silver Bullet" />
+        </b-navbar-brand>
 
-        <b-navbar-toggle target="sb-nav-collapse" />
+        <b-navbar-toggle target="sb-nav-collapse" class="mobileToggle" />
 
         <b-collapse id="sb-nav-collapse" is-nav>
           <div class="w-100 d-lg-flex align-items-lg-center">
             <b-navbar-nav class="mx-lg-auto justify-content-lg-center nav-center">
-              <b-nav-item :to="withLang('/')" router exact>
+              <b-nav-item :to="withLang('/')" router exact @click="closeProductsMenu">
                 {{ $t("nav.home") }}
               </b-nav-item>
 
-              <!-- Products Nav Item -->
               <div
                 class="navItem navItemDropdown"
                 @mouseenter="openProductsMenu"
@@ -41,6 +38,7 @@
                   :to="withLang('/products')"
                   @focus="openProductsMenu"
                   @blur="closeProductsMenuDelayed"
+                  @click="closeProductsMenu"
                 >
                   Products
                 </router-link>
@@ -56,7 +54,7 @@
                     <router-link
                       class="ddItem"
                       :to="{ path: withLang('/products'), query: { line: 'soothing' } }"
-                      @click.native="closeProductsMenu"
+                      @click="closeProductsMenu"
                     >
                       Soothing
                     </router-link>
@@ -64,7 +62,7 @@
                     <router-link
                       class="ddItem"
                       :to="{ path: withLang('/products'), query: { line: 'post-procedures' } }"
-                      @click.native="closeProductsMenu"
+                      @click="closeProductsMenu"
                     >
                       Post-procedures
                     </router-link>
@@ -72,7 +70,7 @@
                     <router-link
                       class="ddItem"
                       :to="{ path: withLang('/products'), query: { line: 'anti-aging' } }"
-                      @click.native="closeProductsMenu"
+                      @click="closeProductsMenu"
                     >
                       Anti-aging
                     </router-link>
@@ -80,11 +78,7 @@
                 </div>
               </div>
 
-              <b-nav-item :to="withLang('/science')" router>
-                {{ $t("nav.science") }}
-              </b-nav-item>
-
-              <b-nav-item :to="withLang('/contact')" router>
+              <b-nav-item :to="withLang('/contact')" router @click="closeProductsMenu">
                 {{ $t("nav.contact") }}
               </b-nav-item>
             </b-navbar-nav>
@@ -97,67 +91,56 @@
       <router-view />
     </main>
 
+    <footer class="siteFooter">
+      <div class="footerInner">
+        <div class="footerCol">
+          <router-link class="footerLink" :to="withLang('/terms')">
+            Terms &amp; Conditions
+          </router-link>
+          <router-link class="footerLink" :to="withLang('/privacy')">
+            Privacy Policy
+          </router-link>
+        </div>
 
-<footer class="siteFooter">
-  <div class="footerInner">
-    <div class="footerCol">
-      <div class="footerTitle">Company</div>
-      <router-link class="footerLink" :to="withLang('/about')">
-        About
-      </router-link>
-      <router-link class="footerLink" :to="withLang('/contact')">
-        Contact
-      </router-link>
-    </div>
+        <div class="footerCol footerRight">
+          <div class="copyright">
+            © 2026 Silver Bullet <sup>®</sup>. All rights reserved.
+          </div>
+          <div class="copyright">
+            Owned by Floating Knight Biotech
+          </div>
 
-    <div class="footerCol">
-      <div class="footerTitle">Legal</div>
-      <router-link class="footerLink" :to="withLang('/terms')">
-        Terms &amp; Conditions
-      </router-link>
-      <router-link class="footerLink" :to="withLang('/privacy')">
-        Privacy Policy
-      </router-link>
-    </div>
-
-    <div class="footerCol footerRight">
-      <div class="copyright">
-        ©2026 Silver Bullet <sup>®</sup>.  All rights reserved.
+          <a
+            class="footerInstagram"
+            href="https://www.instagram.com/silverbullet.healthandbeauty/"
+            target="_blank"
+            rel="noopener"
+            aria-label="Instagram"
+          >
+            <svg
+              class="instagramIcon"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                fill="currentColor"
+                d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5Zm8.9 1.15a.95.95 0 1 1 0 1.9.95.95 0 0 1 0-1.9ZM12 6.5A5.5 5.5 0 1 1 6.5 12 5.51 5.51 0 0 1 12 6.5Zm0 1.5A4 4 0 1 0 16 12a4 4 0 0 0-4-4Z"
+              />
+            </svg>
+            <span>@silverbullet.healthandbeauty</span>
+          </a>
+        </div>
       </div>
-      <div class="copyright">
-        Owned by Floating Knight Biotech
-      </div>
 
-      <a
-        class="footerInstagram"
-        href="https://www.instagram.com/silverbullet.healthandbeauty/"
-        target="_blank"
-        rel="noopener"
-        aria-label="Instagram"
-      >
-        <svg
-          class="instagramIcon"
-          viewBox="0 0 24 24"
-          aria-hidden="true"
-        >
-          <path
-            fill="currentColor"
-            d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5Zm8.9 1.15a.95.95 0 1 1 0 1.9.95.95 0 0 1 0-1.9ZM12 6.5A5.5 5.5 0 1 1 6.5 12 5.51 5.51 0 0 1 12 6.5Zm0 1.5A4 4 0 1 0 16 12a4 4 0 0 0-4-4Z"
-          />
-        </svg>
-        <span>@silverbullet.healthandbeauty</span>
-      </a>
-    </div>
-  </div>
-
-  <div class="footerStick" aria-hidden="true"></div>
-</footer>
+      <div class="footerStick" aria-hidden="true"></div>
+    </footer>
   </div>
 </template>
 
 <script>
 import { setLocale } from "./i18n";
-import logo from "@/assets/svbt_logo.png";
+import logo from "@/assets/logo.svg";
+
 export default {
   name: "App",
   data() {
@@ -165,8 +148,6 @@ export default {
       logo,
       productsMenuOpen: false,
       productsMenuTimer: null,
-      
-      // ====== Metal shine parallax ======
       _rafId: null,
       _pendingY: null,
       _onScrollBound: null,
@@ -181,7 +162,6 @@ export default {
       return p.includes("/products") || p.includes("/eu/products") || p.includes("/zh/products");
     },
   },
-
   methods: {
     withLang(path) {
       const lang =
@@ -197,7 +177,6 @@ export default {
       setLocale(next);
       this.$router.push(`/${next}${rest || ""}`);
     },
-
     openProductsMenu() {
       if (this.productsMenuTimer) {
         clearTimeout(this.productsMenuTimer);
@@ -229,9 +208,6 @@ export default {
     onNavKeydown(e) {
       if (e.key === "Escape") this.closeProductsMenu();
     },
-
-
-// ====== Shine parallax: scroll -> CSS var --shineY ======
     applyShine() {
       this._rafId = null;
       if (this._pendingY == null) return;
@@ -240,38 +216,27 @@ export default {
     updateShineFromScroll() {
       const doc = document.documentElement;
       const scrollTop = window.scrollY || doc.scrollTop || 0;
-      const maxScroll = Math.max(1, (doc.scrollHeight - window.innerHeight));
-
-      // 0..1
+      const maxScroll = Math.max(1, doc.scrollHeight - window.innerHeight);
       const t = Math.min(1, Math.max(0, scrollTop / maxScroll));
       const base = 44;
       const amp = 4;
-
-      // 用 ease 让变化更顺滑
       const eased = t * t * (3 - 2 * t);
-
       this._pendingY = base + (eased - 0.5) * 2 * amp;
 
       if (this._rafId) return;
       this._rafId = window.requestAnimationFrame(this.applyShine);
     },
-
   },
   mounted() {
     window.addEventListener("keydown", this.onNavKeydown);
-    // 初始化亮带位置
     document.documentElement.style.setProperty("--shineY", "44%");
-
-    // 绑定滚动监听（RAF 节流）
     this._onScrollBound = this.updateShineFromScroll.bind(this);
     window.addEventListener("scroll", this._onScrollBound, { passive: true });
-    // 进入页面先跑一次
     this.updateShineFromScroll();
   },
   beforeDestroy() {
     window.removeEventListener("keydown", this.onNavKeydown);
     if (this.productsMenuTimer) clearTimeout(this.productsMenuTimer);
-
     if (this._onScrollBound) window.removeEventListener("scroll", this._onScrollBound);
     if (this._rafId) window.cancelAnimationFrame(this._rafId);
   },
@@ -279,112 +244,72 @@ export default {
 </script>
 
 <style scoped>
-/* =========================
-   Global layout
-   ========================= */
 .app {
- min-height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
- /* 默认值（JS 会实时更新） */
   --shineY: 44%;
-  background:
-    /* subtle metal grain */
-    repeating-linear-gradient(
-      180deg,
-      rgba(255,255,255,0.05) 0px,
-      rgba(255,255,255,0.05) 1px,
-      rgba(0,0,0,0.03) 2px,
-      rgba(0,0,0,0.03) 3px
-    ),
-
-    /* sharp highlight band */
- /* 锐利金属反光带（使用 calc() 将亮带锚定到 --shineY） */
-    linear-gradient(
-      180deg,
-      #bdbdbd 0%,
-      #cfcfcf calc(var(--shineY) - 26%),
-      #e3e3e3 calc(var(--shineY) - 10%),
-
-      #ffffff calc(var(--shineY) - 1.2%),
-      #ffffff var(--shineY),
-      #ffffff calc(var(--shineY) + 1.2%),
-
-      #e3e3e3 calc(var(--shineY) + 10%),
-      #cfcfcf calc(var(--shineY) + 26%),
-      #bdbdbd 100%
-    );
-
+  background: linear-gradient(
+    180deg,
+    #bdbdbd 0%,
+    #cfcfcf calc(var(--shineY) - 26%),
+    #e3e3e3 calc(var(--shineY) - 10%),
+    #ffffff calc(var(--shineY) - 1.2%),
+    #ffffff var(--shineY),
+    #ffffff calc(var(--shineY) + 1.2%),
+    #e3e3e3 calc(var(--shineY) + 10%),
+    #cfcfcf calc(var(--shineY) + 26%),
+    #bdbdbd 100%
+  );
   background-blend-mode: overlay, normal;
+  font-family: "Pluto", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
 }
 
 .main {
   flex: 1;
 }
 
-/* 你原本写在 body 的 font-family 放这里更稳（scoped 不会影响 body） */
-.app {
-  font-family: "Pluto", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-}
-
-
 .topNav {
   position: sticky;
   top: 0;
   z-index: 9999;
- /* 关键：不要纯白底，改为“蓝渐变盖在金属上” */
   background: linear-gradient(
     180deg,
     rgba(0, 30, 230, 0.55) 0%,
     rgba(0, 30, 230, 0.18) 55%,
-    rgba(0, 30, 230, 0.00) 100%
+    rgba(0, 30, 230, 0) 100%
   ) !important;
-
-  /* 让金属底透出来 */
   backdrop-filter: saturate(140%) blur(6px);
   -webkit-backdrop-filter: saturate(140%) blur(6px);
-
-  /* border-bottom: 1px solid rgba(0,0,0,0.06) !important; */
 }
 
-/* overlay 是蓝色渐变，底部透明渐隐 */
 .navOverlay {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 180px;   
+  height: 180px;
   z-index: 0;
   pointer-events: none;
-
-  /* 蓝色从顶往下淡出到透明，像“盖上去” */
   background: linear-gradient(
     180deg,
     rgba(0, 30, 230, 0.95) 0%,
-    rgba(0, 30, 230, 0.60) 22%,
+    rgba(0, 30, 230, 0.6) 22%,
     rgba(0, 30, 230, 0.22) 48%,
-    rgba(0, 30, 230, 0.00) 78%
+    rgba(0, 30, 230, 0) 78%
   );
-
-  /* 微微柔化边缘，让它更像光 */
-  filter: saturate(110%) blur(0px);
 }
 
-/* nav 内容要盖在 overlay 上面 */
 .navInner {
   position: relative;
   z-index: 1;
 }
 
-/* 给 navbar 留一个“视觉高度”，避免 overlay 看起来太薄 */
 ::v-deep .navbar {
   padding-top: 10px;
   padding-bottom: 8px;
 }
 
-/* =========================
-   Nav links styling on blue
-   ========================= */
 .nav-center {
   gap: 10px;
 }
@@ -403,7 +328,7 @@ export default {
   padding-bottom: 8px;
   color: rgba(255,255,255,0.92) !important;
   transition: opacity 0.15s ease, color 0.15s ease;
-  text-shadow: 0 1px 0 rgba(0,0,0,0.10);
+  text-shadow: 0 1px 0 rgba(0,0,0,0.1);
 }
 
 ::v-deep .navbar-brand {
@@ -413,7 +338,6 @@ export default {
   text-shadow: 0 1px 0 rgba(0,0,0,0.12);
 }
 
-/* underline */
 ::v-deep .navbar-nav .nav-link::after {
   content: "";
   position: absolute;
@@ -421,7 +345,7 @@ export default {
   right: 50%;
   bottom: 2px;
   height: 3px;
-  background: rgba(255,255,255,0.95); /* 白色下划线更像在蓝光上 */
+  background: rgba(255,255,255,0.95);
   opacity: 0;
   transition: left 0.18s ease, right 0.18s ease, opacity 0.18s ease;
 }
@@ -447,12 +371,10 @@ export default {
   opacity: 0.86;
 }
 
-/* dropdown 包裹 */
 .navItemDropdown {
   position: relative;
 }
 
-/* dropdown panel 仍然用白底，保证可读性 */
 .productsDropdown {
   position: absolute;
   top: calc(100% + 8px);
@@ -463,12 +385,11 @@ export default {
   background: rgba(255,255,255,0.96);
   border: 1px solid rgba(0,0,0,0.06);
   border-radius: 14px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.10);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.1);
   padding: 10px;
   z-index: 999;
 }
 
-/* ✅ 防止被 navbar 容器裁切 */
 ::v-deep .navbar-nav,
 ::v-deep .navbar-collapse,
 ::v-deep .navbar,
@@ -495,7 +416,6 @@ export default {
   background: #f6f6f6;
 }
 
-/* Products link alignment */
 .productsLink {
   display: inline-flex;
   align-items: center;
@@ -504,9 +424,6 @@ export default {
   padding-bottom: 0.5rem;
 }
 
-/* =========================
-   Footer: keep clean on silver
-   ========================= */
 .siteFooter {
   position: relative;
   border-top: 1px solid rgba(0, 0, 0, 0.08);
@@ -527,14 +444,6 @@ export default {
 
 .footerCol {
   min-width: 150px;
-}
-
-.footerTitle {
-  font-weight: 800;
-  font-size: 13px;
-  margin-bottom: 8px;
-  color: #111;
-  letter-spacing: 0.01em;
 }
 
 .footerLink {
@@ -597,10 +506,81 @@ export default {
   pointer-events: none;
 }
 
-@media (max-width: 820px) {
+@media (max-width: 991.98px) {
+  .mobileToggle {
+    border-color: rgba(255, 255, 255, 0.18) !important;
+    background: rgba(0, 30, 230, 0.08);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+  }
+
+  ::v-deep .navbar-light .navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.18) !important;
+  }
+
+  ::v-deep .navbar-light .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255,0.96)' stroke-width='2.4' stroke-linecap='round' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E") !important;
+  }
+
+  ::v-deep .navbar-collapse {
+    margin-top: 10px;
+    padding: 10px 10px 12px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    box-shadow: 0 18px 36px rgba(0, 0, 0, 0.12);
+  }
+
+  .nav-center {
+    width: 100%;
+    gap: 6px;
+  }
+
+  ::v-deep .navbar-nav .nav-link,
+  .productsLink,
+  .ddItem {
+    text-align: center;
+    justify-content: center;
+    width: 100%;
+    color: rgba(255,255,255,0.98) !important;
+    text-shadow:
+      0 1px 0 rgba(0,0,0,0.14),
+      0 0 12px rgba(0,0,0,0.06);
+  }
+
+  .productsDropdown {
+    position: static;
+    transform: none;
+    min-width: 100%;
+    margin-top: 6px;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+    padding: 8px;
+  }
+
+  .productsDropdownInner {
+    gap: 8px;
+  }
+
+  .ddItem {
+    border-radius: 12px;
+    padding: 12px 14px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+  }
+
+  .ddItem:hover {
+    background: rgba(255, 255, 255, 0.12);
+  }
+
   .siteFooter {
     padding-bottom: 60px;
   }
+
   .footerInner {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -608,18 +588,18 @@ export default {
   }
 
   .footerRight {
-   grid-column: 1 / -1;   /* 跨整行 */
+    grid-column: 1 / -1;
     text-align: left;
     margin-top: 10px;
-    width: 100%;    
+    width: 100%;
   }
 
   .footerInstagram {
     justify-content: flex-start;
     margin-top: 6px;
     display: flex;
-  align-items: center;
-  gap: 3px;
+    align-items: center;
+    gap: 3px;
   }
 
   .footerStick {

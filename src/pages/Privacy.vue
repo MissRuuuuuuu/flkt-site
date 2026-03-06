@@ -5,7 +5,7 @@
         <b-row>
           <b-col cols="12" lg="10" class="mx-auto">
     <div class="legal-hero-inner">
-      <p class="eyebrow mb-2">LEGAL</p>
+      <!-- <p class="eyebrow mb-2">LEGAL</p> -->
       <h1 class="legal-title mb-3">Privacy Policy</h1>
       <p class="legal-desc mb-0">
               This Privacy Policy explains how Floating Knight Biotech collects,
@@ -30,7 +30,7 @@
                 <p>
                   This Privacy Policy explains how
                   <strong>Floating Knight Biotech</strong>, owner of the
-                  <strong>silver bullet®</strong> brand (“we”, “us”, or “our”),
+                  <strong>silver bullet<sup>®</sup></strong> brand (“we”, “us”, or “our”),
                   collects, uses, and protects personal data when you visit this
                   website or contact us through it.
                 </p>
@@ -42,15 +42,7 @@
               </div>
 
               <div class="legal-block">
-                <h2>1. Who We Are</h2>
-                <p class="mb-1"><strong>Floating Knight Biotech</strong></p>
-                <p class="mb-1">Brand: <strong>silver bullet®</strong></p>
-                <p class="mb-1">Email: [Insert Contact Email]</p>
-                <p class="mb-0">Address: [Insert Registered Address]</p>
-              </div>
-
-              <div class="legal-block">
-                <h2>2. Personal Data We May Collect</h2>
+                <h2>1. Personal Data We May Collect</h2>
                 <p class="mb-2">We may collect and process personal data such as:</p>
                 <ul class="legal-list mb-0">
                   <li>name</li>
@@ -65,7 +57,7 @@
               </div>
 
               <div class="legal-block">
-                <h2>3. How We Collect Data</h2>
+                <h2>2. How We Collect Data</h2>
                 <p class="mb-0">
                   We collect personal data when you submit a contact or inquiry
                   form, contact us by email, or otherwise communicate with us
@@ -74,7 +66,7 @@
               </div>
 
               <div class="legal-block">
-                <h2>4. How We Use Personal Data</h2>
+                <h2>3. How We Use Personal Data</h2>
                 <p class="mb-2">We may use personal data to:</p>
                 <ul class="legal-list mb-0">
                   <li>respond to your inquiries</li>
@@ -87,7 +79,7 @@
               </div>
 
               <div class="legal-block">
-                <h2>5. Legal Basis for Processing</h2>
+                <h2>4. Legal Basis for Processing</h2>
                 <p class="mb-0">
                   Where applicable under GDPR, our legal bases for processing may
                   include your consent, our legitimate interests in responding to
@@ -97,7 +89,7 @@
               </div>
 
               <div class="legal-block">
-                <h2>6. Sharing of Personal Data</h2>
+                <h2>5. Sharing of Personal Data</h2>
                 <p class="mb-0">
                   We do not sell personal data. We may share personal data only
                   where necessary with website hosting providers, form or email
@@ -107,7 +99,7 @@
               </div>
 
               <div class="legal-block">
-                <h2>7. International Transfers</h2>
+                <h2>6. International Transfers</h2>
                 <p class="mb-0">
                   Personal data may be processed in countries outside your own
                   jurisdiction, including where our service providers operate.
@@ -117,7 +109,7 @@
               </div>
 
               <div class="legal-block">
-                <h2>8. Data Retention</h2>
+                <h2>7. Data Retention</h2>
                 <p class="mb-0">
                   We retain personal data only for as long as reasonably
                   necessary for the purposes described in this Privacy Policy,
@@ -127,7 +119,7 @@
               </div>
 
               <div class="legal-block">
-                <h2>9. Your Rights</h2>
+                <h2>8. Your Rights</h2>
                 <p class="mb-2">
                   Where applicable, you may have the right to:
                 </p>
@@ -144,7 +136,7 @@
               </div>
 
               <div class="legal-block">
-                <h2>10. Data Security</h2>
+                <h2>9. Data Security</h2>
                 <p class="mb-0">
                   We take reasonable technical and organizational measures to
                   protect personal data against unauthorized access, disclosure,
@@ -154,7 +146,7 @@
               </div>
 
               <div class="legal-block">
-                <h2>11. Cookies and Tracking</h2>
+                <h2>10. Cookies and Tracking</h2>
                 <p class="mb-0">
                   This website is currently primarily informational. If cookies,
                   analytics, or similar tracking technologies are used, they
@@ -164,7 +156,7 @@
               </div>
 
               <div class="legal-block">
-                <h2>12. Third-Party Websites</h2>
+                <h2>11. Third-Party Websites</h2>
                 <p class="mb-0">
                   This website may contain links to third-party websites. We are
                   not responsible for the content or privacy practices of
@@ -173,7 +165,7 @@
               </div>
 
               <div class="legal-block">
-                <h2>13. Children</h2>
+                <h2>12. Children</h2>
                 <p class="mb-0">
                   This website is intended for general informational and business
                   use and is not directed to children. We do not knowingly
@@ -182,7 +174,7 @@
               </div>
 
               <div class="legal-block">
-                <h2>14. Changes to This Privacy Policy</h2>
+                <h2>13. Changes to This Privacy Policy</h2>
                 <p class="mb-0">
                   We may update this Privacy Policy from time to time. Any
                   updated version will be posted on this page with a revised
@@ -191,9 +183,9 @@
               </div>
 
               <div class="legal-block mb-0">
-                <h2>15. Contact</h2>
-                <p class="mb-1"><strong>Floating Knight Biotech</strong></p>
-                <p class="mb-1">Brand: <strong>silver bullet®</strong></p>
+                <h2>14. Contact</h2>
+                <p class="mb-1">Floating Knight Biotech</p>
+                <p class="mb-1">Brand: silver bullet<sup>®</sup></p>
                 <p class="mb-1">Email: info@floatingknight.com</p>
               </div>
             </div>

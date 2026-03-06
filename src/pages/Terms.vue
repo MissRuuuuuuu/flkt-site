@@ -5,11 +5,11 @@
         <b-row>
           <b-col cols="12" lg="9" class="mx-auto">
             <div class="legal-hero-inner">
-            <p class="eyebrow mb-2">LEGAL</p>
+            <!-- <p class="eyebrow mb-2">LEGAL</p> -->
             <h1 class="legal-title mb-3">Terms &amp; Conditions</h1>
             <p class="legal-desc mb-0">
               These Terms &amp; Conditions govern access to and use of the
-              silver bullet® website, operated by Floating Knight Biotech.
+              silver bullet<sup>®</sup> website, operated by Floating Knight Biotech.
             </p></div>
           </b-col>
         </b-row>
@@ -27,10 +27,10 @@
 
               <div class="legal-block">
                 <p>
-                  Welcome to the website of <strong>silver bullet®</strong>, a
+                  Welcome to the website of <strong>silver bullet<sup>®</sup></strong>, a
                   brand owned and operated by
                   <strong>Floating Knight Biotech</strong> (“Floating Knight
-                  Biotech”, “silver bullet®”, “we”, “us”, or “our”).
+                  Biotech”, “silver bullet<sup>®</sup>”, “we”, “us”, or “our”).
                 </p>
                 <p class="mb-0">
                   By accessing or using this website, you agree to these Terms
@@ -39,18 +39,9 @@
                 </p>
               </div>
 
-              <div class="legal-block">
-                <h2>1. Website Purpose</h2>
-                <p class="mb-0">
-                  This website is provided for general informational, corporate,
-                  brand, and product presentation purposes only. Nothing on this
-                  website constitutes medical advice, diagnosis, treatment
-                  advice, regulatory approval, or a binding commercial offer.
-                </p>
-              </div>
 
               <div class="legal-block">
-                <h2>2. No Medical Advice</h2>
+                <h2>1. No Medical Advice</h2>
                 <p class="mb-0">
                   The content on this website is for general information only
                   and should not be interpreted as medical, healthcare,
@@ -61,7 +52,7 @@
               </div>
 
               <div class="legal-block">
-                <h2>3. Product Information</h2>
+                <h2>2. Product Information</h2>
                 <p class="mb-0">
                   Product descriptions, visuals, specifications, and availability
                   shown on this website are provided for general reference only.
@@ -72,9 +63,9 @@
               </div>
 
               <div class="legal-block">
-                <h2>4. Future Product Categories</h2>
+                <h2>3. Future Product Categories</h2>
                 <p class="mb-0">
-                  Floating Knight Biotech and silver bullet® may expand their
+                  Floating Knight Biotech and silver bullet<sup>®</sup> may expand their
                   portfolio over time, including into categories such as medical
                   devices or other regulated healthcare products. Any such
                   products remain subject to applicable laws, approvals, and
@@ -83,12 +74,12 @@
               </div>
 
               <div class="legal-block">
-                <h2>5. Intellectual Property</h2>
+                <h2>4. Intellectual Property</h2>
                 <p class="mb-0">
                   All website content, including text, graphics, layouts,
                   visuals, logos, and design elements, is owned by or licensed
                   to Floating Knight Biotech unless otherwise stated.
-                  <strong>silver bullet®</strong> is a trademark / registered
+                  <strong>silver bullet<sup>®</sup></strong> is a trademark / registered
                   trademark used by Floating Knight Biotech. No content may be
                   copied, reproduced, distributed, or otherwise used without
                   prior written permission, except for personal, non-commercial
@@ -97,7 +88,7 @@
               </div>
 
               <div class="legal-block">
-                <h2>6. Acceptable Use</h2>
+                <h2>5. Acceptable Use</h2>
                 <p class="mb-2">You agree not to:</p>
                 <ul class="legal-list mb-0">
                   <li>use the website in any unlawful or misleading manner</li>
@@ -109,7 +100,7 @@
               </div>
 
               <div class="legal-block">
-                <h2>7. Third-Party Links</h2>
+                <h2>6. Third-Party Links</h2>
                 <p class="mb-0">
                   This website may contain links to third-party websites for
                   convenience only. We do not control and are not responsible
@@ -119,7 +110,7 @@
               </div>
 
               <div class="legal-block">
-                <h2>8. No Warranties</h2>
+                <h2>7. No Warranties</h2>
                 <p class="mb-0">
                   This website and its content are provided on an “as is” and
                   “as available” basis. To the fullest extent permitted by law,
@@ -131,7 +122,7 @@
               </div>
 
               <div class="legal-block">
-                <h2>9. Limitation of Liability</h2>
+                <h2>8. Limitation of Liability</h2>
                 <p class="mb-0">
                   To the fullest extent permitted by applicable law, Floating
                   Knight Biotech shall not be liable for any direct, indirect,
@@ -142,7 +133,7 @@
               </div>
 
               <div class="legal-block">
-                <h2>10. Contact Forms and Communications</h2>
+                <h2>9. Contact Forms and Communications</h2>
                 <p class="mb-0">
                   Where this website provides a contact form or inquiry channel,
                   users must provide accurate and lawful information. Submission
@@ -152,7 +143,7 @@
               </div>
 
               <div class="legal-block">
-                <h2>11. Changes to the Website</h2>
+                <h2>10. Changes to the Website</h2>
                 <p class="mb-0">
                   We reserve the right to modify, suspend, restrict, or
                   discontinue any part of this website or its content at any
@@ -161,7 +152,7 @@
               </div>
 
               <div class="legal-block">
-                <h2>12. Changes to These Terms</h2>
+                <h2>11. Changes to These Terms</h2>
                 <p class="mb-0">
                   We may update these Terms &amp; Conditions from time to time.
                   Any updated version will be posted on this page with a revised
@@ -170,7 +161,7 @@
               </div>
 
               <div class="legal-block">
-                <h2>13. Governing Law</h2>
+                <h2>12. Governing Law</h2>
                 <p class="mb-0">
                   These Terms &amp; Conditions shall be governed by and
                   interpreted in accordance with the applicable laws of the
@@ -180,9 +171,9 @@
               </div>
 
               <div class="legal-block mb-0">
-                <h2>14. Contact</h2>
-                <p class="mb-1"><strong>Floating Knight Biotech</strong></p>
-                <p class="mb-1">Brand: <strong>silver bullet®</strong></p>
+                <h2>13. Contact</h2>
+                <p class="mb-1">Floating Knight Biotech</p>
+                <p class="mb-1">Brand: silver bullet <sup>®</sup></p>
                 <p class="mb-1">Email: info@floatingknight.com</p>
                 <!-- <p class="mb-0">Address: [Insert Registered Address]</p> -->
               </div>

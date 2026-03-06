@@ -5,11 +5,8 @@ import Home from "../pages/Home.vue";
 import About from "../pages/About.vue";
 import FloatingKnight from "../pages/FloatingKnight.vue";
 import Science from "../pages/Science.vue";
-import MarketEU from "../pages/MarketEU.vue";
-import ProductSoothingGel from "../pages/ProductSoothingGel.vue";
-import MarketCN from "../pages/MarketCN.vue";
+import ProductSoothingGel from "../pages/ProductDetail.vue";
 import Contact from "../pages/Contact.vue";
-import Legal from "../pages/Legal.vue";
 import Products from "../pages/Products.vue";
 import Terms from "../pages/Terms.vue";
 import Privacy from "../pages/Privacy.vue";
@@ -88,14 +85,6 @@ const routes = [
         },
       },
       {
-        path: "eu",
-        name: "market-eu",
-        component: MarketEU,
-        meta: {
-          title: "EU Market | silver bullet®",
-        },
-      },
-      {
         path: "eu/products/:slug",
         name: "eu-product",
         component: ProductSoothingGel,
@@ -104,27 +93,11 @@ const routes = [
         },
       },
       {
-        path: "cn",
-        name: "market-cn",
-        component: MarketCN,
-        meta: {
-          title: "CN Market | silver bullet®",
-        },
-      },
-      {
         path: "contact",
         name: "contact",
         component: Contact,
         meta: {
           title: "Contact Us | silver bullet®",
-        },
-      },
-      {
-        path: "legal",
-        name: "legal",
-        component: Legal,
-        meta: {
-          title: "Legal | silver bullet®",
         },
       },
       {

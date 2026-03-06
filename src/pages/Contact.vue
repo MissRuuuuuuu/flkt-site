@@ -5,15 +5,7 @@
         <b-row>
           <b-col cols="12" lg="8">
             <div class="hero-copy">
-              <!-- <p class="eyebrow mb-2">{{ uiText.eyebrow }}</p> -->
-              <h1 class="hero-title mb-3">{{ t(cms.contact.title) }}</h1>
 
-              <p
-                v-if="cms.contact && cms.contact.text"
-                class="hero-desc mb-0"
-              >
-                {{ t(cms.contact.text) }}
-              </p>
             </div>
           </b-col>
         </b-row>
@@ -22,42 +14,44 @@
 
     <section class="contact-section">
       <b-container>
-        <b-row class="align-items-stretch">
-          <b-col cols="12" lg="5" class="mb-4 mb-lg-0 d-flex">
-            <div class="info-card w-100">
-              <div class="section-kicker mb-2">{{ uiText.infoKicker }}</div>
-              <h2 class="section-title mb-3">{{ uiText.infoTitle }}</h2>
+        <b-row class="align-items-start contact-layout">
+          
+ <!-- Contact details -->
+          <b-col cols="12" lg="4" class="mb-4 mb-lg-0">
+            <div class="contact-details">
+              <h2 class="hero-title">{{ uiText.detailsTitle }}</h2>
+              <p class="details-intro">
+                {{ uiText.detailsIntro }}
+              </p>
 
-              <div
-                v-if="cms.contact && cms.contact.body"
-                class="info-body mb-3"
-                style="white-space: pre-line;"
-              >
-                {{ t(cms.contact.body) }}
+              <div class="detail-card">
+                <div class="detail-label">OUR Offices</div>
+                <h3 class="detail-company">Floating Knight Biotech Pte. Ltd.</h3>
+                <div class="detail-country">Singapore</div>
+                <p class="detail-address mb-0">
+                  8 Kaki Bukit Avenue 4, #08-32, Premier @ Kaki Bukit, <br>Singapore 415875
+                </p>
               </div>
 
-              <div class="info-block">
-                <h3>{{ uiText.inquiryTitle }}</h3>
-                <p>{{ uiText.inquiryDesc }}</p>
-              </div>
+      
+                <h3 class="detail-company mt-4" >Floating Knight Biotech Europe B.V.</h3>
+                <div class="detail-country">Netherlands</div>
+                <p class="detail-address mb-0">
+                  Haaksbergweg 75, 1101BR Amsterdam
+                </p>
+          
 
-              <div class="info-block">
-                <h3>{{ uiText.qualityTitle }}</h3>
-                <p>{{ uiText.qualityDesc }}</p>
-              </div>
-
-              <div class="info-block mb-0">
-                <h3>{{ uiText.partnershipTitle }}</h3>
-                <p>{{ uiText.partnershipDesc }}</p>
+              <div class="detail-card detail-card-email">
+                <div class="detail-label">{{ uiText.emailLabelSmall }}</div>
+                <a class="detail-email" href="mailto:info@floatingknight.com">
+                  info@floatingknight.com
+                </a>
               </div>
             </div>
           </b-col>
-
-          <b-col cols="12" lg="7" class="d-flex">
+          <!-- Form -->
+          <b-col cols="12" lg="8" class="d-flex">
             <div class="form-card w-100">
-              <div class="section-kicker mb-2">{{ uiText.formKicker }}</div>
-              <h2 class="section-title mb-2">{{ uiText.formTitle }}</h2>
-              <p class="form-intro mb-3">{{ uiText.formIntro }}</p>
 
               <b-alert
                 v-if="submitState === 'success'"
@@ -105,16 +99,16 @@
                       class="form-group-elegant"
                     >
                       <b-form-input
-  id="contact-email"
-  v-model.trim="form.email"
-  type="email"
-  :placeholder="uiText.emailPlaceholder"
-  :state="emailState"
-  class="form-control-elegant"
-/>
+                        id="contact-email"
+                        v-model.trim="form.email"
+                        type="email"
+                        :placeholder="uiText.emailPlaceholder"
+                        :state="emailState"
+                        class="form-control-elegant"
+                      />
                       <b-form-invalid-feedback v-if="emailState === false">
-  {{ uiText.invalidEmail }}
-</b-form-invalid-feedback>
+                        {{ uiText.invalidEmail }}
+                      </b-form-invalid-feedback>
                     </b-form-group>
                   </b-col>
 
@@ -155,12 +149,12 @@
                       class="form-group-elegant"
                     >
                       <b-form-select
-  id="contact-business-type"
-  v-model="form.businessType"
-  :options="businessTypeOptions"
-  class="form-control-elegant"
-  :class="{ 'select-placeholder': !form.businessType }"
-/>
+                        id="contact-business-type"
+                        v-model="form.businessType"
+                        :options="businessTypeOptions"
+                        class="form-control-elegant"
+                        :class="{ 'select-placeholder': !form.businessType }"
+                      />
                     </b-form-group>
                   </b-col>
 
@@ -209,7 +203,14 @@
                     :state="getFieldState('consent')"
                     class="consent-checkbox"
                   >
-                    &nbsp;{{ uiText.privacyConsentLabel }}
+                    &nbsp;&nbsp;I understand and agree to the
+                    <router-link class="inline-legal-link" :to="withLang('/terms')">
+                      terms
+                    </router-link>
+                    of use and
+                    <router-link class="inline-legal-link" :to="withLang('/privacy')">
+                      privacy policy
+                    </router-link>.
                   </b-form-checkbox>
 
                   <div v-if="errors.consent" class="consent-error">
@@ -229,23 +230,20 @@
                 </div>
 
                 <div class="form-footer">
-                  <p class="privacy-note">
-                    {{ uiText.privacyNote }}
-                  </p>
-
                   <b-button
-                  type="submit"
-                  class="submit-btn-elegant"
-                  :class="{ 'submit-btn-disabled': !isFormReady || isSubmitting }"
-                  :disabled="!isFormReady || isSubmitting"
+                    type="submit"
+                    class="submit-btn-elegant"
+                    :class="{ 'submit-btn-disabled': !isFormReady || isSubmitting }"
+                    :disabled="!isFormReady || isSubmitting"
                   >
-                  <b-spinner small v-if="isSubmitting" class="mr-2" />
-                   {{ isSubmitting ? uiText.submittingText : uiText.submitText }}
+                    <b-spinner small v-if="isSubmitting" class="mr-2" />
+                    {{ isSubmitting ? uiText.submittingText : uiText.submitText }}
                   </b-button>
                 </div>
               </b-form>
             </div>
           </b-col>
+         
         </b-row>
       </b-container>
     </section>
@@ -259,7 +257,6 @@ const FORM_ENDPOINT = "https://formspree.io/f/mzdjpnqg";
 
 export default {
   name: "Contact",
-
   data() {
     return {
       cms: null,
@@ -290,21 +287,17 @@ export default {
     uiText() {
       const dict = {
         en: {
-          eyebrow: "CONTACT",
-          infoKicker: "Professional Communication",
-          infoTitle: "Let us understand your needs",
-          inquiryTitle: "Business Inquiries",
-          inquiryDesc:
-            "Please share your company background, target market, and product interests so our team can respond more efficiently.",
-          qualityTitle: "Product & Quality Topics",
-          qualityDesc:
-            "You may also include questions related to specifications, documentation, packaging preferences, or collaboration requirements.",
-          partnershipTitle: "Long-Term Partnership",
-          partnershipDesc:
-            "We welcome serious distribution, private label, and strategic cooperation inquiries from qualified partners.",
+          detailsKicker: "Contact Details",
+          detailsTitle: "Get in touch",
+          detailsIntro:
+            "For product, distribution, or partnership inquiries, please contact us directly or submit the form.",
+
+          headOfficeLabel: "Registered Office",
+          euOfficeLabel: "Europe Office",
+          emailLabelSmall: "Email",
 
           formKicker: "Inquiry Form",
-          formTitle: "Send a business inquiry",
+          formTitle: "Contact us",
           formIntro:
             "Complete the form below and our team will review your request as soon as possible.",
 
@@ -323,14 +316,10 @@ export default {
           messagePlaceholder:
             "Please briefly describe your inquiry, intended market, quantity expectations, or cooperation needs.",
 
-          privacyConsentLabel:
-            "I understand and agree to the terms of use and privacy policy.",
-          privacyNote:
-            "Your information will only be used to respond to your inquiry.",
           submitText: "Submit",
           submittingText: "Submitting...",
           successMessage:
-            "Thank you. Your inquiry has been received successfully.",
+            "Thank you. Your message has been received successfully.",
           errorMessage:
             "We could not submit your inquiry at this time. Please try again later.",
 
@@ -339,34 +328,21 @@ export default {
           invalidEmail: "Please enter a valid email address.",
           requiredMessage: "Please enter your message.",
           requiredConsent: "Please confirm your consent before submitting.",
-
           businessTypePlaceholder: "Select business type",
-          businessTypeBrand: "Brand Owner",
-          businessTypeDistributor: "Distributor",
-          businessTypeRetailer: "Retailer",
-          businessTypeManufacturer: "Manufacturer",
-          businessTypeClinic: "Clinic / Healthcare Institution",
-          businessTypeOther: "Other",
+
         },
         zh: {
-          eyebrow: "联系我们",
-          infoKicker: "专业沟通",
-          infoTitle: "让我们更了解您的需求",
-          inquiryTitle: "商务咨询",
-          inquiryDesc:
-            "请尽量提供公司背景、目标市场和感兴趣的产品信息，以便我们更高效地回复。",
-          qualityTitle: "产品与质量相关问题",
-          qualityDesc:
-            "您也可以补充规格、资料文件、包装偏好或合作要求等信息，便于我们内部评估。",
-          partnershipTitle: "长期合作",
-          partnershipDesc:
-            "我们欢迎来自合格合作伙伴的分销、贴牌及长期战略合作咨询。",
-
+          detailsKicker: "联系信息",
+          detailsTitle: "与我们联系",
+          detailsIntro:
+            "如需了解产品、分销合作或其他商务合作，请直接联系或填写右侧表单。",
+          headOfficeLabel: "注册办公室",
+          euOfficeLabel: "欧洲办公室",
+          emailLabelSmall: "邮箱",
           formKicker: "咨询表单",
-          formTitle: "发送商务咨询",
+          formTitle: "联系我们",
           formIntro:
             "请填写以下表单，我们会尽快审阅并回复您的需求。",
-
           nameLabel: "姓名 *",
           namePlaceholder: "请输入您的姓名",
           emailLabel: "工作邮箱 *",
@@ -381,65 +357,66 @@ export default {
           messageLabel: "留言内容 *",
           messagePlaceholder:
             "请简要填写您的咨询内容、目标市场、预计数量或合作需求。",
-
-          privacyConsentLabel:
-            "我同意 Floating Knight 就此次咨询与我联系。",
-          privacyNote:
-            "您的信息仅用于回复本次咨询。",
           submitText: "提交",
           submittingText: "提交中...",
           successMessage:
             "感谢您的留言，我们已成功收到您的咨询信息。",
           errorMessage:
             "当前无法提交您的咨询，请稍后再试。",
-
           requiredName: "请输入您的姓名。",
           requiredEmail: "请输入您的工作邮箱。",
           invalidEmail: "请输入有效的邮箱地址。",
           requiredMessage: "请输入留言内容。",
           requiredConsent: "提交前请先勾选同意条款。",
-
           businessTypePlaceholder: "请选择业务类型",
-          businessTypeBrand: "品牌方",
-          businessTypeDistributor: "经销商",
-          businessTypeRetailer: "零售商",
-          businessTypeManufacturer: "生产商",
-          businessTypeClinic: "诊所 / 医疗机构",
-          businessTypeOther: "其他",
+
         },
       };
 
       return dict[this.currentLang] || dict.en;
     },
-  businessTypeOptions() {
-  return [
-    { value: "", text: this.uiText.businessTypePlaceholder, disabled: true },
-    { value: "Brand Owner", text: this.uiText.businessTypeBrand },
-    { value: "Distributor", text: this.uiText.businessTypeDistributor },
-    { value: "Retailer", text: this.uiText.businessTypeRetailer },
-    { value: "Manufacturer", text: this.uiText.businessTypeManufacturer },
-    { value: "Clinic / Healthcare Institution", text: this.uiText.businessTypeClinic },
-    { value: "Other", text: this.uiText.businessTypeOther },
-  ];
-},
+    businessTypeOptions() {
+      return [
+        { value: "", text: this.uiText.businessTypePlaceholder, disabled: true },
+    { value: "Brand Owner", text: "Brand Owner" },
+    { value: "Distributor / Wholesaler", text: "Distributor / Wholesaler" },
+    { value: "Manufacturer", text: "Manufacturer" },
+    { value: "Pharmacy / Pharmacy Chain", text: "Pharmacy / Pharmacy Chain" },
+    { value: "Dermo-Cosmetic Retailer", text: "Dermo-Cosmetic Retailer" },
+    { value: "Aesthetic / Medical Clinic", text: "Aesthetic / Medical Clinic" },
+    { value: "Hospital", text: "Hospital" },
+    { value: "E-commerce Platform", text: "E-commerce Platform" },
+    { value: "Trading Company / Importer", text: "Trading Company / Importer" },
+    { value: "Other", text: "Other" },
+      ];
+    },
     emailState() {
-  if (!this.form.email) return null; // 没填，不提示
-  return this.validateEmail(this.form.email); // true 或 false
-},
+      if (!this.form.email) return null;
+      return this.validateEmail(this.form.email);
+    },
     isFormReady() {
-  return (
-    !!this.form.name &&
-    !!this.form.email &&
-    this.validateEmail(this.form.email) &&
-    !!this.form.message &&
-    !!this.form.consent
-  );
-},
+      return (
+        !!this.form.name &&
+        !!this.form.email &&
+        this.validateEmail(this.form.email) &&
+        !!this.form.message &&
+        !!this.form.consent
+      );
+    },
   },
   methods: {
     t(obj) {
       const lang = this.$i18n.locale;
       return (obj && (obj[lang] || obj.en)) || "";
+    },
+    withLang(path) {
+      const lang =
+        (this.$route && this.$route.params && this.$route.params.lang) ||
+        this.$i18n.locale ||
+        "en";
+      const p = path.startsWith("/") ? path : `/${path}`;
+      if (p === "/") return `/${lang}`;
+      return `/${lang}${p}`;
     },
     getFieldState(field) {
       if (!this.errors[field]) return null;
@@ -512,7 +489,7 @@ export default {
           consent: this.form.consent ? "Yes" : "No",
           _subject: "New inquiry from Floating Knight website",
           _source: "Floating Knight website",
-          _page: window.location.href
+          _page: window.location.href,
         };
 
         const response = await fetch(FORM_ENDPOINT, {
@@ -545,22 +522,15 @@ export default {
 .contact-page {
   background: transparent;
   color: #1f1f1a;
+
 }
 
 .contact-hero {
-  padding: 40px 0 18px;
+  padding: 40px 0 20px;
 }
 
 .hero-copy {
   max-width: 760px;
-}
-
-.eyebrow {
-  font-size: 0.74rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: #7b7a72;
-  font-weight: 600;
 }
 
 .hero-title {
@@ -580,10 +550,100 @@ export default {
 }
 
 .contact-section {
-  padding: 10px 0 48px;
+  padding: 8px 0 52px;
 }
 
-.info-card,
+.contact-layout {
+  row-gap: 24px;
+}
+
+/* left details */
+.contact-details {
+  padding-right: 14px;
+}
+
+.details-kicker {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #8b8b83;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.details-title {
+  font-size: 1.5rem;
+  line-height: 1.14;
+  letter-spacing: -0.02em;
+  color: #1f201b;
+  font-weight: 600;
+  margin: 0 0 12px;
+}
+
+.details-intro {
+  color: #6a6c63;
+  line-height: 1.6;
+  font-size: 0.9rem;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  max-width: 360px;
+}
+
+.detail-card {
+  background: transparent;
+  border-top: 1px solid rgba(70, 70, 55, 0.08);
+  padding-top: 16px;
+  margin-top: 16px;
+}
+
+.detail-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: -0.05em;
+  color: #8b8b83;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.detail-company {
+  font-size: 0.9rem;
+  line-height: 1.45;
+  font-weight: 600;
+  color: #22231e;
+  margin: 0 0 4px;
+}
+
+.detail-country {
+  font-size: 0.85rem;
+  color: #4f514b;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.detail-address {
+  color: #6a6c63;
+  line-height: 1.7;
+  font-size: 0.85rem;
+   font-weight: 300;
+}
+
+.detail-card-email {
+  margin-top: 18px;
+}
+
+.detail-email {
+  color: #1f1f1a;
+  text-decoration: none;
+  font-size: 0.94rem;
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+.detail-email:hover {
+  text-decoration: underline;
+}
+
+/* form */
 .form-card {
   background: transparent;
   border: 1px solid rgba(70, 70, 55, 0.08);
@@ -617,42 +677,8 @@ export default {
   max-width: 640px;
 }
 
-.info-body {
-  color: #65675f;
-  font-size: 0.92rem;
-  line-height: 1.6;
-}
-
-.info-block {
-  padding-top: 14px;
-  margin-top: 14px;
-  border-top: 1px solid rgba(70, 70, 55, 0.08);
-}
-
-.info-block h3 {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: #22231e;
-  margin-bottom: 6px;
-}
-
-.info-block p {
-  margin-bottom: 0;
-  color: #6a6c63;
-  line-height: 1.55;
-  font-size: 0.9rem;
-}
-
 .form-group-elegant {
   margin-bottom: 0.95rem;
-}
-
-
-::v-deep .form-control-elegant::placeholder {
-  color: #b9b9b9;
-  font-weight: 300;
-  font-size: 0.8rem;
-  opacity: 1;
 }
 
 ::v-deep .form-group-elegant > label {
@@ -663,23 +689,31 @@ export default {
   margin-bottom: 0.4rem;
 }
 
+::v-deep .form-control-elegant::placeholder {
+  color: #8a8a8a;
+  font-weight: 300;
+  font-size: 0.8rem;
+  opacity: 1;
+}
+
 ::v-deep .form-control-elegant,
 ::v-deep .form-control-elegant.form-control,
 ::v-deep .form-control-elegant.custom-select {
   min-height: 44px;
   height: 44px;
   border-radius: 12px;
-  border: 1.5px solid #d8d7d0;
+  border: 1.5px solid #b9b9b9;
   background: transparent;
-  color: #1f1f1a; 
-  font-weight: 400; 
+  color: #1f1f1a;
+  font-weight: 400;
   box-shadow: none;
   padding-left: 10px;
   padding-right: 10px;
   font-size: 0.8rem;
 }
+
 ::v-deep .form-control-elegant.custom-select.select-placeholder {
-  color: #b9b9b9;
+  color: #8a8a8a;
   font-weight: 300;
   font-size: 0.8rem;
 }
@@ -695,13 +729,14 @@ export default {
   height: 104px;
   padding-top: 10px;
   padding-bottom: 10px;
+  border-color: #b9b9b9;
   resize: none;
 }
 
 ::v-deep .form-control-elegant:focus,
 ::v-deep .form-control-elegant.form-control:focus,
 ::v-deep .form-control-elegant.custom-select:focus {
-  border-color: #a8a79f;
+  border-color: #8a8a8a;
   background: transparent;
   box-shadow: 0 0 0 0.15rem rgba(94, 96, 86, 0.08);
 }
@@ -732,8 +767,19 @@ export default {
 
 ::v-deep .consent-checkbox .custom-control-label::before {
   border-radius: 4px;
-  border-color: #bdbcb4;
+  border-color: #8a8a8a;
   background-color: transparent;
+}
+
+.inline-legal-link {
+  color: #1f1f1a;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.inline-legal-link:hover {
+  color: #1f1f1a;
+  opacity: 0.75;
 }
 
 .consent-error {
@@ -744,20 +790,11 @@ export default {
 
 .form-footer {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   gap: 14px;
   margin-top: 8px;
   flex-wrap: nowrap;
-}
-
-.privacy-note {
-  color: #787a71;
-  font-size: 0.8rem;
-  line-height: 1.45;
-  max-width: 360px;
-  font-weight: 300;
-  margin: 0;
 }
 
 .submit-btn-elegant {
@@ -825,28 +862,13 @@ export default {
     line-height: 1.45;
   }
 
-  .info-card,
   .form-card {
     padding: 24px 24px;
   }
 
-  .section-title {
+  .section-title,
+  .details-title {
     font-size: 1.45rem;
-  }
-
-  .info-body {
-    font-size: 0.9rem;
-    line-height: 1.5;
-  }
-
-  .info-block {
-    padding-top: 12px;
-    margin-top: 12px;
-  }
-
-  .info-block p {
-    font-size: 0.88rem;
-    line-height: 1.45;
   }
 
   ::v-deep .form-control-elegant,
@@ -880,14 +902,18 @@ export default {
     font-size: 1.85rem;
   }
 
-  .section-title {
+  .section-title,
+  .details-title {
     font-size: 1.35rem;
   }
 
-  .info-card,
   .form-card {
     padding: 22px 18px;
     border-radius: 18px;
+  }
+
+  .contact-details {
+    padding-right: 0;
   }
 }
 
@@ -898,19 +924,14 @@ export default {
 
   .hero-desc,
   .form-intro,
-  .info-body,
-  .info-block p {
+  .details-intro,
+  .detail-address {
     font-size: 0.9rem;
   }
 
   .form-footer {
     flex-wrap: wrap;
     align-items: stretch;
-  }
-
-  .privacy-note {
-    max-width: none;
-    width: 100%;
   }
 
   .submit-btn-elegant {

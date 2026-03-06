@@ -193,51 +193,51 @@ eu: {
       ],
     },
 
-    // {
-    //   slug: "anti-aging-gel",
-    //   images: ["/img/antiaginggel.png"],
-    // line: "anti-aging",
-    //   disclaimerNote: {
-    //     zh: "⚠️ 这是网站版，不是包装说明书",
-    //     en: "⚠️ This is website copy, not packaging instructions.",
-    //   },
-    //   name: { zh: "Silver Bullet® Anti-aging Gel", en: "Silver Bullet® Anti-aging Gel" },
-    //   short: {
-    //     zh: "针对日常肌肤状态管理的凝胶型护理（站点预览文案）。",
-    //     en: "A gel-format daily skin support option (site preview copy).",
-    //   },
-    //   description: {
-    //     zh:
-    //       "用于日常的肌肤状态维护与舒适感管理，\n强调温和、稳定、可持续的使用体验。\n\n（此页为站点预览文案，可后续按法规与品类进一步调整。）",
-    //     en:
-    //       "Designed for daily skin comfort and condition support,\nfocusing on a gentle, stable, and sustainable experience.\n\n(This is preview website copy and can be refined later by category and regulations.)",
-    //   },
-    //   sections: [
-    //     {
-    //       key: "recommended",
-    //       title: { zh: "适用场景", en: "Recommended for" },
-    //       bullets: {
-    //         zh: ["日常护理需要更轻薄的选择", "希望提升整体舒适感与稳定度"],
-    //         en: [
-    //           "Daily routine when a lighter option is preferred",
-    //           "When aiming for overall comfort and stability",
-    //         ],
-    //       },
-    //     },
-    //     {
-    //       key: "features",
-    //       title: { zh: "特点", en: "Key features" },
-    //       bullets: {
-    //         zh: ["轻薄凝胶质地", "强调长期稳定使用体验", "适合多种肤质（按实际配方为准）"],
-    //         en: [
-    //           "Light gel texture",
-    //           "Built for stable long-term use",
-    //           "For multiple skin types (depending on final formula)",
-    //         ],
-    //       },
-    //     },
-    //   ],
-    // },
+    {
+      slug: "anti-aging-gel",
+      images: ["/img/antiaginggel.png"],
+    line: "anti-aging",
+      disclaimerNote: {
+        zh: "⚠️ 这是网站版，不是包装说明书",
+        en: "⚠️ This is website copy, not packaging instructions.",
+      },
+      name: { zh: "Silver Bullet® Anti-aging Gel", en: "Silver Bullet® Anti-aging Gel" },
+      short: {
+        zh: "针对日常肌肤状态管理的凝胶型护理（站点预览文案）。",
+        en: "A gel-format daily skin support option (site preview copy).",
+      },
+      description: {
+        zh:
+          "用于日常的肌肤状态维护与舒适感管理，\n强调温和、稳定、可持续的使用体验。\n\n（此页为站点预览文案，可后续按法规与品类进一步调整。）",
+        en:
+          "Designed for daily skin comfort and condition support,\nfocusing on a gentle, stable, and sustainable experience.\n\n(This is preview website copy and can be refined later by category and regulations.)",
+      },
+      sections: [
+        {
+          key: "recommended",
+          title: { zh: "适用场景", en: "Recommended for" },
+          bullets: {
+            zh: ["日常护理需要更轻薄的选择", "希望提升整体舒适感与稳定度"],
+            en: [
+              "Daily routine when a lighter option is preferred",
+              "When aiming for overall comfort and stability",
+            ],
+          },
+        },
+        {
+          key: "features",
+          title: { zh: "特点", en: "Key features" },
+          bullets: {
+            zh: ["轻薄凝胶质地", "强调长期稳定使用体验", "适合多种肤质（按实际配方为准）"],
+            en: [
+              "Light gel texture",
+              "Built for stable long-term use",
+              "For multiple skin types (depending on final formula)",
+            ],
+          },
+        },
+      ],
+    },
   ],
 },
  // CN
@@ -278,7 +278,7 @@ eu: {
     text:{zh:
         "如需了解更多产品或合作信息，\n欢迎与我们联系。",
       en:
-        "For product or partnership inquiries,\nplease feel free to contact us.",},
+        "For product, distribution, or partnership inquiries, \n\nplease contact us directly or submit the form.",},
     body: {
       zh:
         "Silver Bullet®\n品牌持有方：Floating Knight Biotech",
