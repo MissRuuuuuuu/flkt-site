@@ -41,6 +41,9 @@ import { getCMS } from "../cms/cmsClient";
 
 export default {
   name: "Science",
+  mounted() {
+    document.title = "Science | silver bullet®";
+  },
   data() {
     return { cms: null };
   },

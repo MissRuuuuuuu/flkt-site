@@ -98,28 +98,60 @@
     </main>
 
 
-    <footer class="siteFooter">
-      <div class="footerInner">
-        <div class="footerCol">
-          <div class="footerTitle">Company</div>
-          <router-link class="footerLink" :to="withLang('/about')">About</router-link>
-        </div>
+<footer class="siteFooter">
+  <div class="footerInner">
+    <div class="footerCol">
+      <div class="footerTitle">Company</div>
+      <router-link class="footerLink" :to="withLang('/about')">
+        About
+      </router-link>
+      <router-link class="footerLink" :to="withLang('/contact')">
+        Contact
+      </router-link>
+    </div>
 
-        <div class="footerCol">
-          <div class="footerTitle">Social</div>
-          <a class="footerLink" href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
-        </div>
+    <div class="footerCol">
+      <div class="footerTitle">Legal</div>
+      <router-link class="footerLink" :to="withLang('/terms')">
+        Terms &amp; Conditions
+      </router-link>
+      <router-link class="footerLink" :to="withLang('/privacy')">
+        Privacy Policy
+      </router-link>
+    </div>
 
-        <div class="footerCol footerRight">
-          <div class="copyright">
-            © 2026 Silver Bullet. All Rights Reserved.<br />
-            Owned by Floating Knight
-          </div>
-          <div class="copyright">Terms & Conditions</div>
-        </div>
+    <div class="footerCol footerRight">
+      <div class="copyright">
+        ©2026 Silver Bullet <sup>®</sup>.  All rights reserved.
       </div>
-      <div class="footerStick" aria-hidden="true"></div>
-    </footer>
+      <div class="copyright">
+        Owned by Floating Knight Biotech
+      </div>
+
+      <a
+        class="footerInstagram"
+        href="https://www.instagram.com/silverbullet.healthandbeauty/"
+        target="_blank"
+        rel="noopener"
+        aria-label="Instagram"
+      >
+        <svg
+          class="instagramIcon"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path
+            fill="currentColor"
+            d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5Zm8.9 1.15a.95.95 0 1 1 0 1.9.95.95 0 0 1 0-1.9ZM12 6.5A5.5 5.5 0 1 1 6.5 12 5.51 5.51 0 0 1 12 6.5Zm0 1.5A4 4 0 1 0 16 12a4 4 0 0 0-4-4Z"
+          />
+        </svg>
+        <span>@silverbullet.healthandbeauty</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="footerStick" aria-hidden="true"></div>
+</footer>
   </div>
 </template>
 
@@ -476,11 +508,12 @@ export default {
    Footer: keep clean on silver
    ========================= */
 .siteFooter {
-  border-top: 1px solid rgba(0,0,0,0.08);
+  position: relative;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
   background: transparent;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  padding: 22px 0;
+  padding: 18px 0 30px;
 }
 
 .footerInner {
@@ -488,62 +521,110 @@ export default {
   margin: 0 auto;
   padding: 0 16px;
   display: flex;
-  gap: 24px;
+  gap: 28px;
+  align-items: flex-start;
 }
 
 .footerCol {
-  min-width: 160px;
+  min-width: 150px;
 }
+
 .footerTitle {
   font-weight: 800;
-  margin-bottom: 10px;
+  font-size: 13px;
+  margin-bottom: 8px;
+  color: #111;
+  letter-spacing: 0.01em;
 }
+
 .footerLink {
   display: block;
-  color: #111;
+  color: #222;
   text-decoration: none;
-  margin: 6px 0;
+  margin: 5px 0;
+  font-size: 13px;
+  line-height: 1.5;
 }
+
 .footerLink:hover {
   text-decoration: underline;
 }
+
 .footerRight {
   margin-left: auto;
   text-align: right;
 }
+
 .copyright {
   color: #444;
-  line-height: 1.6;
+  line-height: 1.5;
   font-size: 12px;
 }
 
-@media (max-width: 820px) {
-  .footerInner {
-    flex-direction: column;
-  }
-  .footerRight {
-    margin-left: 0;
-    text-align: left;
-  }
+.footerInstagram {
+  margin-top: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 3px;
+  color: #111;
+  text-decoration: none;
+  font-size: 12px;
+  line-height: 1.4;
+  font-weight: 300;
+  letter-spacing: 0.01em;
 }
 
-.siteFooter {
-  position: relative; /* ✅ 关键：让竖线 bottom:0 以 footer 为参考 */
-  border-top: 1px solid rgba(0,0,0,0.08);
-  background: transparent;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  padding: 22px 0; /* footer 内容可以有 padding，不影响竖线贴底 */
+.footerInstagram:hover {
+  text-decoration: underline;
+  opacity: 0.75;
+}
+
+.instagramIcon {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
 }
 
 .footerStick {
   position: absolute;
   left: 50%;
-  bottom: 0;                 /* ✅ 贴着 footer 最底部 */
+  bottom: 0;
   transform: translateX(-50%);
-  width: 30px;               /* 你截图看起来挺粗：可改 40/48/56 */
-  height: 100px;             /* 你之前提到 160px：这里就用 160 */
+  width: 30px;
+  height: 100px;
   background: #001EE6;
   pointer-events: none;
+}
+
+@media (max-width: 820px) {
+  .siteFooter {
+    padding-bottom: 60px;
+  }
+  .footerInner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .footerRight {
+   grid-column: 1 / -1;   /* 跨整行 */
+    text-align: left;
+    margin-top: 10px;
+    width: 100%;    
+  }
+
+  .footerInstagram {
+    justify-content: flex-start;
+    margin-top: 6px;
+    display: flex;
+  align-items: center;
+  gap: 3px;
+  }
+
+  .footerStick {
+    width: 18px;
+    height: 54px;
+  }
 }
 </style>

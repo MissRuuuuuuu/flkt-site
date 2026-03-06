@@ -11,50 +11,179 @@ import MarketCN from "../pages/MarketCN.vue";
 import Contact from "../pages/Contact.vue";
 import Legal from "../pages/Legal.vue";
 import Products from "../pages/Products.vue";
+import Terms from "../pages/Terms.vue";
+import Privacy from "../pages/Privacy.vue";
 
 Vue.use(Router);
 
+const SUPPORTED_LOCALES = ["en", "zh"];
+
+const getSavedLocale = () => {
+  try {
+    const saved = localStorage.getItem("sb_locale");
+    return SUPPORTED_LOCALES.includes(saved) ? saved : "en";
+  } catch (error) {
+    return "en";
+  }
+};
+
 const langGuard = (to, from, next) => {
-  const lang = to.params.lang;
-  if (!["en", "zh"].includes(lang)) return next("/en");
-  next();
+  const { lang } = to.params;
+
+  if (!SUPPORTED_LOCALES.includes(lang)) {
+    return next(`/${getSavedLocale()}`);
+  }
+
+  try {
+    localStorage.setItem("sb_locale", lang);
+  } catch (error) {
+    // ignore localStorage errors
+  }
+
+  return next();
+};
+
+const EmptyRouterView = {
+  render(h) {
+    return h("router-view");
+  },
 };
 
 const routes = [
   {
     path: "/:lang(en|zh)",
+    component: EmptyRouterView,
     beforeEnter: langGuard,
-    component: { render: (h) => h("router-view") }, // simple layout wrapper
     children: [
-      { path: "", name: "home", component: Home },
-      { path: "about", name: "about", component: About },
-      { path: "floating-knight", name: "floating", component: FloatingKnight },
-      { path: "science", name: "science", component: Science },
-
-      { path: "eu", name: "eu", component: MarketEU },
-      { path: "eu/products/:slug", name: "eu-product", component: ProductSoothingGel },
-
-      { path: "cn", name: "cn", component: MarketCN },
-      { path: "contact", name: "contact", component: Contact },
-      { path: "legal", name: "legal", component: Legal },
-      { path: "products",name: "Products", component: Products,}
+      {
+        path: "",
+        name: "home",
+        component: Home,
+        meta: {
+          title: "Home | silver bullet®",
+        },
+      },
+      {
+        path: "about",
+        name: "about",
+        component: About,
+        meta: {
+          title: "About | silver bullet®",
+        },
+      },
+      {
+        path: "floating-knight",
+        name: "floating-knight",
+        component: FloatingKnight,
+        meta: {
+          title: "Floating Knight Biotech | silver bullet®",
+        },
+      },
+      {
+        path: "science",
+        name: "science",
+        component: Science,
+        meta: {
+          title: "Science | silver bullet®",
+        },
+      },
+      {
+        path: "eu",
+        name: "market-eu",
+        component: MarketEU,
+        meta: {
+          title: "EU Market | silver bullet®",
+        },
+      },
+      {
+        path: "eu/products/:slug",
+        name: "eu-product",
+        component: ProductSoothingGel,
+        meta: {
+          title: "Product | silver bullet®",
+        },
+      },
+      {
+        path: "cn",
+        name: "market-cn",
+        component: MarketCN,
+        meta: {
+          title: "CN Market | silver bullet®",
+        },
+      },
+      {
+        path: "contact",
+        name: "contact",
+        component: Contact,
+        meta: {
+          title: "Contact Us | silver bullet®",
+        },
+      },
+      {
+        path: "legal",
+        name: "legal",
+        component: Legal,
+        meta: {
+          title: "Legal | silver bullet®",
+        },
+      },
+      {
+        path: "products",
+        name: "products",
+        component: Products,
+        meta: {
+          title: "Products | silver bullet®",
+        },
+      },
+      {
+        path: "terms",
+        name: "terms",
+        component: Terms,
+        meta: {
+          title: "Terms & Conditions | silver bullet®",
+        },
+      },
+      {
+        path: "privacy",
+        name: "privacy",
+        component: Privacy,
+        meta: {
+          title: "Privacy Policy | silver bullet®",
+        },
+      },
     ],
   },
 
-  // root redirect → pick saved locale, default en
   {
     path: "/",
-    redirect: () => {
-      const saved = localStorage.getItem("sb_locale") || "en";
-      return `/${saved}`;
-    },
+    redirect: () => `/${getSavedLocale()}`,
   },
 
-  // fallback
-  { path: "*", redirect: "/en" },
+  {
+    path: "*",
+    redirect: () => `/${getSavedLocale()}`,
+  },
 ];
 
-export default new Router({
+const router = new Router({
   mode: "history",
   routes,
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition;
+    }
+
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve({ x: 0, y: 0 });
+      }, 0);
+    });
+  },
 });
+
+router.afterEach((to) => {
+  const defaultTitle = "silver bullet®";
+  document.title = to.meta && to.meta.title ? to.meta.title : defaultTitle;
+});
+
+export default router;

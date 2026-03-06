@@ -175,6 +175,7 @@ import { getCMS } from "../cms/cmsClient";
 
 export default {
   name: "Home",
+
   data() {
     return {
       cms: null,

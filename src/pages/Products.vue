@@ -31,6 +31,7 @@ import { getCMS } from "../cms/cmsClient";
 
 export default {
   name: "Products",
+  
   data() {
     return { cms: null };
   },
@@ -61,6 +62,7 @@ export default {
     return all.filter(p => p.line === this.activeLine); // 你按自己的字段名改
   },
 }
+
 };
 </script>
 
