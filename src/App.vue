@@ -15,19 +15,24 @@
 
         <b-navbar-toggle target="sb-nav-collapse" class="mobileToggle" />
 
-        <b-collapse id="sb-nav-collapse" is-nav>
+        <b-collapse id="sb-nav-collapse" is-nav ref="mobileNav">
           <div class="w-100 d-lg-flex align-items-lg-center">
             <b-navbar-nav class="mx-lg-auto justify-content-lg-center nav-center">
-              <b-nav-item :to="withLang('/')" router exact @click="closeProductsMenu">
+              <b-nav-item
+                :to="withLang('/')"
+                router
+                exact
+                @click.native="handleNavItemClick"
+              >
                 {{ $t("nav.home") }}
               </b-nav-item>
 
               <div
                 class="navItem navItemDropdown"
-                @mouseenter="openProductsMenu"
-                @mouseleave="closeProductsMenuDelayed"
-                @focusin="openProductsMenu"
-                @focusout="onProductsFocusOut"
+                @mouseenter="!isMobileNav() && openProductsMenu()"
+                @mouseleave="!isMobileNav() && closeProductsMenuDelayed()"
+                @focusin="!isMobileNav() && openProductsMenu()"
+                @focusout="!isMobileNav() && onProductsFocusOut()"
               >
                 <router-link
                   class="nav-link productsLink"
@@ -36,25 +41,24 @@
                     'router-link-active': isProductsActive
                   }"
                   :to="withLang('/products')"
-                  @focus="openProductsMenu"
-                  @blur="closeProductsMenuDelayed"
-                  @click="closeProductsMenu"
+                  @click.native="handleProductsClick"
                 >
                   Products
                 </router-link>
 
+                <!-- PC端 hover 时显示；手机端菜单展开时始终显示 -->
                 <div
-                  v-show="productsMenuOpen"
+                  v-show="productsMenuVisible"
                   class="productsDropdown"
                   role="menu"
-                  @mouseenter="openProductsMenu"
-                  @mouseleave="closeProductsMenuDelayed"
+                  @mouseenter="!isMobileNav() && openProductsMenu()"
+                  @mouseleave="!isMobileNav() && closeProductsMenuDelayed()"
                 >
                   <div class="productsDropdownInner">
                     <router-link
                       class="ddItem"
                       :to="{ path: withLang('/products'), query: { line: 'soothing' } }"
-                      @click="closeProductsMenu"
+                      @click.native="handleNavItemClick"
                     >
                       Soothing
                     </router-link>
@@ -62,7 +66,7 @@
                     <router-link
                       class="ddItem"
                       :to="{ path: withLang('/products'), query: { line: 'post-procedures' } }"
-                      @click="closeProductsMenu"
+                      @click.native="handleNavItemClick"
                     >
                       Post-procedures
                     </router-link>
@@ -70,7 +74,7 @@
                     <router-link
                       class="ddItem"
                       :to="{ path: withLang('/products'), query: { line: 'anti-aging' } }"
-                      @click="closeProductsMenu"
+                      @click.native="handleNavItemClick"
                     >
                       Anti-aging
                     </router-link>
@@ -78,7 +82,11 @@
                 </div>
               </div>
 
-              <b-nav-item :to="withLang('/contact')" router @click="closeProductsMenu">
+              <b-nav-item
+                :to="withLang('/contact')"
+                router
+                @click.native="handleNavItemClick"
+              >
                 {{ $t("nav.contact") }}
               </b-nav-item>
             </b-navbar-nav>
@@ -151,6 +159,7 @@ export default {
       _rafId: null,
       _pendingY: null,
       _onScrollBound: null,
+      isMobileMenuOpen: false,
     };
   },
   computed: {
@@ -160,6 +169,9 @@ export default {
     isProductsActive() {
       const p = this.$route.path || "";
       return p.includes("/products") || p.includes("/eu/products") || p.includes("/zh/products");
+    },
+    productsMenuVisible() {
+      return this.isMobileNav() ? this.isMobileMenuOpen : this.productsMenuOpen;
     },
   },
   methods: {
@@ -172,11 +184,38 @@ export default {
       if (p === "/") return `/${lang}`;
       return `/${lang}${p}`;
     },
+
     switchLang(next) {
       const rest = this.$route.fullPath.replace(/^\/(en|zh)/, "");
       setLocale(next);
       this.$router.push(`/${next}${rest || ""}`);
     },
+
+    isMobileNav() {
+      return window.innerWidth < 992;
+    },
+
+    collapseMobileNav() {
+      if (this.isMobileNav() && this.$refs.mobileNav) {
+        this.$refs.mobileNav.hide();
+        this.isMobileMenuOpen = false;
+      }
+    },
+
+    handleNavItemClick() {
+      this.closeProductsMenu();
+      this.collapseMobileNav();
+    },
+
+    handleProductsClick() {
+      if (this.isMobileNav()) {
+        this.closeProductsMenu();
+        this.collapseMobileNav();
+      } else {
+        this.closeProductsMenu();
+      }
+    },
+
     openProductsMenu() {
       if (this.productsMenuTimer) {
         clearTimeout(this.productsMenuTimer);
@@ -184,6 +223,7 @@ export default {
       }
       this.productsMenuOpen = true;
     },
+
     closeProductsMenu() {
       if (this.productsMenuTimer) {
         clearTimeout(this.productsMenuTimer);
@@ -191,6 +231,7 @@ export default {
       }
       this.productsMenuOpen = false;
     },
+
     closeProductsMenuDelayed() {
       if (this.productsMenuTimer) clearTimeout(this.productsMenuTimer);
       this.productsMenuTimer = setTimeout(() => {
@@ -198,6 +239,7 @@ export default {
         this.productsMenuTimer = null;
       }, 120);
     },
+
     onProductsFocusOut() {
       window.setTimeout(() => {
         const root = this.$el.querySelector(".navItemDropdown");
@@ -205,35 +247,47 @@ export default {
         if (!root.contains(document.activeElement)) this.closeProductsMenu();
       }, 0);
     },
+
     onNavKeydown(e) {
       if (e.key === "Escape") this.closeProductsMenu();
     },
+
     applyShine() {
       this._rafId = null;
       if (this._pendingY == null) return;
       document.documentElement.style.setProperty("--shineY", `${this._pendingY}%`);
     },
+
     updateShineFromScroll() {
       const doc = document.documentElement;
       const scrollTop = window.scrollY || doc.scrollTop || 0;
-      const maxScroll = Math.max(1, doc.scrollHeight - window.innerHeight);
+      const maxScroll = Math.max(1, (doc.scrollHeight - window.innerHeight));
       const t = Math.min(1, Math.max(0, scrollTop / maxScroll));
       const base = 44;
       const amp = 4;
       const eased = t * t * (3 - 2 * t);
+
       this._pendingY = base + (eased - 0.5) * 2 * amp;
 
       if (this._rafId) return;
       this._rafId = window.requestAnimationFrame(this.applyShine);
     },
   },
+
   mounted() {
     window.addEventListener("keydown", this.onNavKeydown);
     document.documentElement.style.setProperty("--shineY", "44%");
     this._onScrollBound = this.updateShineFromScroll.bind(this);
     window.addEventListener("scroll", this._onScrollBound, { passive: true });
     this.updateShineFromScroll();
+
+    this.$root.$on("bv::collapse::state", (id, isJustShown) => {
+      if (id === "sb-nav-collapse") {
+        this.isMobileMenuOpen = isJustShown;
+      }
+    });
   },
+
   beforeDestroy() {
     window.removeEventListener("keydown", this.onNavKeydown);
     if (this.productsMenuTimer) clearTimeout(this.productsMenuTimer);
@@ -377,16 +431,20 @@ export default {
 
 .productsDropdown {
   position: absolute;
-  top: calc(100% + 8px);
+  top: calc(100% + 10px);
   left: 50%;
   transform: translateX(-50%);
-  min-width: 260px;
+  min-width: 280px;
   pointer-events: auto;
-  background: rgba(255,255,255,0.96);
-  border: 1px solid rgba(0,0,0,0.06);
-  border-radius: 14px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.1);
-  padding: 10px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  border-radius: 18px;
+  box-shadow:
+    0 18px 44px rgba(0, 0, 0, 0.10),
+    0 1px 0 rgba(255, 255, 255, 0.28) inset;
+  backdrop-filter: blur(18px) saturate(135%);
+  -webkit-backdrop-filter: blur(18px) saturate(135%);
+  padding: 12px;
   z-index: 999;
 }
 
@@ -405,15 +463,20 @@ export default {
 
 .ddItem {
   display: block;
-  padding: 10px 12px;
+  padding: 12px 14px;
   border-radius: 12px;
   text-decoration: none;
   color: #111;
   font-weight: 600;
+  text-align: center;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35);
+  transition: background 0.18s ease, color 0.18s ease, opacity 0.18s ease;
 }
 
 .ddItem:hover {
-  background: #f6f6f6;
+  background: rgba(255, 255, 255, 0.46);
+  color: #111;
+  text-decoration: none;
 }
 
 .productsLink {
@@ -522,14 +585,13 @@ export default {
   }
 
   ::v-deep .navbar-collapse {
-    margin-top: 10px;
-    padding: 10px 10px 12px;
-    border-radius: 18px;
+    margin-top: 14px;
+    padding: 14px 12px;
+    border-radius: 20px;
     background: rgba(255, 255, 255, 0.14);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border: 1px solid rgba(255, 255, 255, 0.16);
-    box-shadow: 0 18px 36px rgba(0, 0, 0, 0.12);
+    backdrop-filter: blur(16px) saturate(130%);
+    -webkit-backdrop-filter: blur(16px) saturate(130%);
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.10);
   }
 
   .nav-center {
@@ -537,29 +599,36 @@ export default {
     gap: 6px;
   }
 
-  ::v-deep .navbar-nav .nav-link,
-  .productsLink,
-  .ddItem {
+  ::v-deep .navbar-nav {
+    align-items: center;
     text-align: center;
-    justify-content: center;
+  }
+
+  ::v-deep .navbar-nav .nav-link {
     width: 100%;
-    color: rgba(255,255,255,0.98) !important;
+    text-align: center;
     text-shadow:
-      0 1px 0 rgba(0,0,0,0.14),
-      0 0 12px rgba(0,0,0,0.06);
+      0 1px 2px rgba(0, 0, 0, 0.18),
+      0 1px 0 rgba(255, 255, 255, 0.12);
   }
 
   .productsDropdown {
     position: static;
+    top: auto;
+    left: auto;
     transform: none;
-    min-width: 100%;
-    margin-top: 6px;
-    background: rgba(255, 255, 255, 0.12);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
-    padding: 8px;
+    width: 100%;
+    min-width: 0;
+    margin-top: 10px;
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.30);
+    border-radius: 18px;
+    box-shadow:
+      0 12px 30px rgba(0, 0, 0, 0.10),
+      0 1px 0 rgba(255, 255, 255, 0.24) inset;
+    backdrop-filter: blur(18px) saturate(135%);
+    -webkit-backdrop-filter: blur(18px) saturate(135%);
+    padding: 10px;
   }
 
   .productsDropdownInner {
@@ -571,6 +640,8 @@ export default {
     padding: 12px 14px;
     font-weight: 600;
     letter-spacing: 0.01em;
+    text-align: center;
+    font-size: 1.05rem;
   }
 
   .ddItem:hover {
