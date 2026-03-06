@@ -5,7 +5,7 @@
         <b-row>
           <b-col cols="12" lg="8">
             <div class="hero-copy">
-              <p class="eyebrow mb-2">{{ uiText.eyebrow }}</p>
+              <!-- <p class="eyebrow mb-2">{{ uiText.eyebrow }}</p> -->
               <h1 class="hero-title mb-3">{{ t(cms.contact.title) }}</h1>
 
               <p
@@ -209,7 +209,7 @@
                     :state="getFieldState('consent')"
                     class="consent-checkbox"
                   >
-                    {{ uiText.privacyConsentLabel }}
+                    &nbsp;{{ uiText.privacyConsentLabel }}
                   </b-form-checkbox>
 
                   <div v-if="errors.consent" class="consent-error">
@@ -324,7 +324,7 @@ export default {
             "Please briefly describe your inquiry, intended market, quantity expectations, or cooperation needs.",
 
           privacyConsentLabel:
-            "I understand and agree to the terms of use and privacy policy",
+            "I understand and agree to the terms of use and privacy policy.",
           privacyNote:
             "Your information will only be used to respond to your inquiry.",
           submitText: "Submit",
@@ -681,7 +681,7 @@ export default {
 ::v-deep .form-control-elegant.custom-select.select-placeholder {
   color: #b9b9b9;
   font-weight: 300;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
 }
 
 ::v-deep select option {

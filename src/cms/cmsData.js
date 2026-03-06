@@ -97,17 +97,20 @@ eu: {
   products: [
     {
       slug: "soothing-gel",
-      images: ["/img/soothinggel.png"],
-      line: "soothing",
-      disclaimerNote: {
-        zh: "⚠️ 这是网站版，不是包装说明书",
-        en: "⚠️ This is website copy, not packaging instructions.",
-      },
-      name: { zh: "Silver Bullet® Soothing Gel", en: "Silver Bullet® Soothing Gel" },
-      short: {
-        zh: "一款为身体与肌肤设计的多用途舒缓凝胶。",
-        en: "A versatile soothing gel designed for both body and face.",
-      },
+  images: ["/img/soothinggel.png"],
+  line: "soothing",
+  disclaimerNote: {
+    zh: "⚠️ 这是网站版，不是包装说明书",
+    en: "⚠️ This is website copy, not packaging instructions.",
+  },
+  name: {
+    zh: "Innovative Soothing Gel",
+    en: "Innovative Soothing Gel"
+  },
+  short: {
+    zh: "一款为身体与肌肤设计的多用途舒缓凝胶。",
+    en: "Specifically designed for discomfort in joint areas",
+  },
       description: {
         zh:
           "当肌肤感到紧绷、燥热或压力时，\nSoothing Gel 能迅速带来清爽、放松的感受，\n并支持肌肤的自然修护节律。\n\n虽然作用于肌肤表层，\n其舒缓体验却往往延伸至更深层的感受，\n带来整体的轻松与平衡。",
@@ -143,17 +146,20 @@ eu: {
 
     {
       slug: "post-procedure-gel",
-      images: ["/img/postproceduresgel.png"],
-      line: "post-procedures",
-      disclaimerNote: {
-        zh: "⚠️ 这是网站版，不是包装说明书",
-        en: "⚠️ This is website copy, not packaging instructions.",
-      },
-      name: { zh: "Silver Bullet® Post-procedure Gel", en: "Silver Bullet® Post-procedure Gel" },
-      short: {
-        zh: "针对术后/项目后阶段的温和舒缓凝胶（站点预览文案）。",
-        en: "A gentle gel for post-procedure soothing (site preview copy).",
-      },
+  images: ["/img/postproceduresgel.png"],
+  line: "post-procedures",
+  disclaimerNote: {
+    zh: "⚠️ 这是网站版，不是包装说明书",
+    en: "⚠️ This is website copy, not packaging instructions.",
+  },
+  name: {
+    zh: "Innovative Soothing Hydration Face Gel",
+    en: "Innovative Soothing Hydration Face Gel"
+  },
+  short: {
+    zh: "针对术后/项目后阶段的温和舒缓凝胶。",
+    en: "Specifically designed for post-aesthetic care",
+  },
       description: {
         zh:
           "用于项目后阶段的舒缓与稳定体验，\n帮助肌肤回到更舒适的状态。\n\n（此页为站点预览文案，可后续按法规与品类进一步调整。）",
@@ -187,51 +193,51 @@ eu: {
       ],
     },
 
-    {
-      slug: "anti-aging-gel",
-      images: ["/img/antiaginggel.png"],
-    line: "anti-aging",
-      disclaimerNote: {
-        zh: "⚠️ 这是网站版，不是包装说明书",
-        en: "⚠️ This is website copy, not packaging instructions.",
-      },
-      name: { zh: "Silver Bullet® Anti-aging Gel", en: "Silver Bullet® Anti-aging Gel" },
-      short: {
-        zh: "针对日常肌肤状态管理的凝胶型护理（站点预览文案）。",
-        en: "A gel-format daily skin support option (site preview copy).",
-      },
-      description: {
-        zh:
-          "用于日常的肌肤状态维护与舒适感管理，\n强调温和、稳定、可持续的使用体验。\n\n（此页为站点预览文案，可后续按法规与品类进一步调整。）",
-        en:
-          "Designed for daily skin comfort and condition support,\nfocusing on a gentle, stable, and sustainable experience.\n\n(This is preview website copy and can be refined later by category and regulations.)",
-      },
-      sections: [
-        {
-          key: "recommended",
-          title: { zh: "适用场景", en: "Recommended for" },
-          bullets: {
-            zh: ["日常护理需要更轻薄的选择", "希望提升整体舒适感与稳定度"],
-            en: [
-              "Daily routine when a lighter option is preferred",
-              "When aiming for overall comfort and stability",
-            ],
-          },
-        },
-        {
-          key: "features",
-          title: { zh: "特点", en: "Key features" },
-          bullets: {
-            zh: ["轻薄凝胶质地", "强调长期稳定使用体验", "适合多种肤质（按实际配方为准）"],
-            en: [
-              "Light gel texture",
-              "Built for stable long-term use",
-              "For multiple skin types (depending on final formula)",
-            ],
-          },
-        },
-      ],
-    },
+    // {
+    //   slug: "anti-aging-gel",
+    //   images: ["/img/antiaginggel.png"],
+    // line: "anti-aging",
+    //   disclaimerNote: {
+    //     zh: "⚠️ 这是网站版，不是包装说明书",
+    //     en: "⚠️ This is website copy, not packaging instructions.",
+    //   },
+    //   name: { zh: "Silver Bullet® Anti-aging Gel", en: "Silver Bullet® Anti-aging Gel" },
+    //   short: {
+    //     zh: "针对日常肌肤状态管理的凝胶型护理（站点预览文案）。",
+    //     en: "A gel-format daily skin support option (site preview copy).",
+    //   },
+    //   description: {
+    //     zh:
+    //       "用于日常的肌肤状态维护与舒适感管理，\n强调温和、稳定、可持续的使用体验。\n\n（此页为站点预览文案，可后续按法规与品类进一步调整。）",
+    //     en:
+    //       "Designed for daily skin comfort and condition support,\nfocusing on a gentle, stable, and sustainable experience.\n\n(This is preview website copy and can be refined later by category and regulations.)",
+    //   },
+    //   sections: [
+    //     {
+    //       key: "recommended",
+    //       title: { zh: "适用场景", en: "Recommended for" },
+    //       bullets: {
+    //         zh: ["日常护理需要更轻薄的选择", "希望提升整体舒适感与稳定度"],
+    //         en: [
+    //           "Daily routine when a lighter option is preferred",
+    //           "When aiming for overall comfort and stability",
+    //         ],
+    //       },
+    //     },
+    //     {
+    //       key: "features",
+    //       title: { zh: "特点", en: "Key features" },
+    //       bullets: {
+    //         zh: ["轻薄凝胶质地", "强调长期稳定使用体验", "适合多种肤质（按实际配方为准）"],
+    //         en: [
+    //           "Light gel texture",
+    //           "Built for stable long-term use",
+    //           "For multiple skin types (depending on final formula)",
+    //         ],
+    //       },
+    //     },
+    //   ],
+    // },
   ],
 },
  // CN
