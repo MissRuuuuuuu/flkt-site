@@ -15,14 +15,14 @@
 
         <b-navbar-toggle target="sb-nav-collapse" class="mobileToggle" />
 
-        <b-collapse id="sb-nav-collapse" is-nav ref="mobileNav">
+        <b-collapse id="sb-nav-collapse" is-nav v-model="mobileNavOpen">
           <div class="w-100 d-lg-flex align-items-lg-center">
             <b-navbar-nav class="mx-lg-auto justify-content-lg-center nav-center">
               <b-nav-item
                 :to="withLang('/')"
                 router
                 exact
-                @click.native="handleNavItemClick"
+                @click="handleNavItemClick"
               >
                 {{ $t("nav.home") }}
               </b-nav-item>
@@ -41,7 +41,7 @@
                     'router-link-active': isProductsActive
                   }"
                   :to="withLang('/products')"
-                  @click.native="handleProductsClick"
+                  @click="handleProductsClick"
                 >
                   Products
                 </router-link>
@@ -53,12 +53,13 @@
                   role="menu"
                   @mouseenter="!isMobileNav() && openProductsMenu()"
                   @mouseleave="!isMobileNav() && closeProductsMenuDelayed()"
+                
                 >
                   <div class="productsDropdownInner">
                     <router-link
                       class="ddItem"
                       :to="{ path: withLang('/products'), query: { line: 'soothing' } }"
-                      @click.native="handleNavItemClick"
+                      @click="handleNavItemClick"
                     >
                       Soothing
                     </router-link>
@@ -66,7 +67,7 @@
                     <router-link
                       class="ddItem"
                       :to="{ path: withLang('/products'), query: { line: 'post-procedures' } }"
-                      @click.native="handleNavItemClick"
+                      @click="handleNavItemClick"
                     >
                       Post-procedures
                     </router-link>
@@ -74,7 +75,7 @@
                     <router-link
                       class="ddItem"
                       :to="{ path: withLang('/products'), query: { line: 'anti-aging' } }"
-                      @click.native="handleNavItemClick"
+                      @click="handleNavItemClick"
                     >
                       Anti-aging
                     </router-link>
@@ -85,7 +86,7 @@
               <b-nav-item
                 :to="withLang('/contact')"
                 router
-                @click.native="handleNavItemClick"
+                @click="handleNavItemClick"
               >
                 {{ $t("nav.contact") }}
               </b-nav-item>
@@ -159,7 +160,7 @@ export default {
       _rafId: null,
       _pendingY: null,
       _onScrollBound: null,
-      isMobileMenuOpen: false,
+      mobileNavOpen: false,
     };
   },
   computed: {
@@ -170,9 +171,9 @@ export default {
       const p = this.$route.path || "";
       return p.includes("/products") || p.includes("/eu/products") || p.includes("/zh/products");
     },
-    productsMenuVisible() {
-      return this.isMobileNav() ? this.isMobileMenuOpen : this.productsMenuOpen;
-    },
+  productsMenuVisible() {
+  return this.isMobileNav() ? this.mobileNavOpen : this.productsMenuOpen;
+},
   },
   methods: {
     withLang(path) {
@@ -195,12 +196,11 @@ export default {
       return window.innerWidth < 992;
     },
 
-    collapseMobileNav() {
-      if (this.isMobileNav() && this.$refs.mobileNav) {
-        this.$refs.mobileNav.hide();
-        this.isMobileMenuOpen = false;
-      }
-    },
+  collapseMobileNav() {
+  if (this.isMobileNav()) {
+    this.mobileNavOpen = false;
+  }
+},
 
     handleNavItemClick() {
       this.closeProductsMenu();
@@ -281,11 +281,6 @@ export default {
     window.addEventListener("scroll", this._onScrollBound, { passive: true });
     this.updateShineFromScroll();
 
-    this.$root.$on("bv::collapse::state", (id, isJustShown) => {
-      if (id === "sb-nav-collapse") {
-        this.isMobileMenuOpen = isJustShown;
-      }
-    });
   },
 
   beforeDestroy() {

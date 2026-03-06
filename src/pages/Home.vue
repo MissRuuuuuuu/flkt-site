@@ -1044,9 +1044,57 @@ skipIntroButShowHero() {
     grid-template-columns: 1fr;
   }
 
-  .seriesCenter {
-    order: -1;
-  }
+
+.seriesCenter {
+  order: 0;
+  max-width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.seriesProductLink {
+  width: 100%;
+  max-width: 180px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.bodyImg {
+  max-height: 300px;
+}
+
+.faceImg {
+  max-height: 240px;
+}
+
+.seriesProductName {
+  margin-top: 12px;
+  font-size: 0.82rem;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.seriesCenterBig {
+  font-size: 3.4rem;
+  line-height: 0.92;
+}
+
+.seriesCenterSub {
+  margin-top: 6px;
+  font-size: 1.45rem;
+  line-height: 1.02;
+}
+
+.seriesCenterStack {
+  margin-top: 22px;
+  font-size: 0.98rem;
+  line-height: 1.22;
+}
+
+.plusSign {
+  margin: 10px 0;
+  font-size: 2.8rem;
+}
 
   .teaserContent,
   .seriesCenter,
