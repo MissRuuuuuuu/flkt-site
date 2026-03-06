@@ -49,7 +49,7 @@
                 <!-- PC端 hover 时显示；手机端菜单展开时始终显示 -->
                 <div
                   v-show="productsMenuVisible"
-                  class="productsDropdown"
+                  class="productsDropdown  "
                   role="menu"
                   @mouseenter="!isMobileNav() && openProductsMenu()"
                   @mouseleave="!isMobileNav() && closeProductsMenuDelayed()"
@@ -171,8 +171,8 @@ export default {
       const p = this.$route.path || "";
       return p.includes("/products") || p.includes("/eu/products") || p.includes("/zh/products");
     },
-  productsMenuVisible() {
-  return this.isMobileNav() ? this.mobileNavOpen : this.productsMenuOpen;
+ productsMenuVisible() {
+  return this.isMobileNav() ? false : this.productsMenuOpen;
 },
   },
   methods: {
