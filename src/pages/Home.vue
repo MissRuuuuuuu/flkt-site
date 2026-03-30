@@ -1,322 +1,13 @@
 <template>
   <div v-if="cms" class="homeRoot" :class="{ isStatic: introMode === 'static' }">
-    <!-- Hero animation screen -->
-    <section class="heroScreen" aria-label="Silver Bullet animation" :style="heroStyle">
-      <div class="heroStage">
-        <!-- Layer A: blue line -->
-        <svg
-          class="sbLine"
-          viewBox="0 0 100 100"
-          preserveAspectRatio="xMidYMid meet"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <line class="blueLine" x1="0" y1="50" x2="8" y2="50" />
-        </svg>
-
-        <!-- Layer B: main layout canvas -->
-        <svg
-          class="sbMain"
-          viewBox="0 0 100 100"
-          preserveAspectRatio="xMidYMid meet"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <svg
-            class="logoBox"
-            x="11.5"
-            y="39"
-            width="18"
-            height="22"
-            viewBox="0 0 196.56 98.85"
-            preserveAspectRatio="xMidYMid meet"
-          >
-            <g class="sbLogoMain">
-              <polygon
-                points="191.5 39.83 191.5 47.2 100.81 47.2 100.81 32.55 95.75 32.55 95.75 47.2 5.06 47.2 5.06 39.83 0 39.83 0 59.64 5.06 59.64 5.06 52.27 95.75 52.27 95.75 66.92 100.81 66.92 100.81 52.27 191.5 52.27 191.5 59.64 196.56 59.64 196.56 39.83 191.5 39.83"
-              />
-              <path
-                d="M33.78,70.98h-.39s-17.21,0-17.21,0v3.33c0,.96.77,1.73,1.73,1.73h.1v6.34h-1.83v3.33c0,.96.77,1.73,1.73,1.73h.1v6.34h-1.84l-1.17,5.06h18.39s.39,0,.39,0c4.54,0,8.23-3.69,8.23-8.23,0-2.21-.88-4.22-2.31-5.7,1.43-1.48,2.31-3.49,2.31-5.7,0-4.54-3.69-8.23-8.23-8.23ZM33.78,93.78h-.39s-10.31,0-10.31,0v-6.34h10.7c1.75,0,3.17,1.42,3.17,3.17s-1.42,3.17-3.17,3.17ZM33.78,82.38h-10.71v-6.34h10.7c1.75,0,3.17,1.42,3.17,3.17s-1.42,3.17-3.17,3.17Z"
-              />
-              <path
-                d="M180.39,76.04l1.17-5.06h-28.12s0,3.54,0,3.54c0,.84.68,1.53,1.53,1.53h9.28v17.74h-1.25l-1.17,5.06h2.42s5.06,0,5.06,0h0s2.42,0,2.42,0v-3.33c0-.96-.77-1.73-1.73-1.73h-.69v-17.74h11.08Z"
-              />
-              <path
-                d="M115.54,93.78h-14.74v-17.74h1.83l1.17-5.06h-9.9v3.33c0,.96.77,1.73,1.73,1.73h.1v17.74h-1.84l-1.17,5.06h24.53v-3.35c0-.95-.77-1.71-1.71-1.71Z"
-              />
-              <path
-                d="M146.81,76.04l1.17-5.06h-25.49s-10.73,0-10.73,0l-1.17,5.06h13.73v6.34h-1.83v3.33c0,.96.77,1.73,1.73,1.73h.1v6.34h-1.84l-1.17,5.06h26.68v-3.33c0-.96-.77-1.73-1.73-1.73h-16.87v-6.34h15.32l1.17-5.06h-16.49v-6.34h17.42Z"
-              />
-              <path
-                d="M88.93,93.78h-8.46v-17.74h1.83l1.17-5.06h-9.9v3.33c0,.96.77,1.73,1.73,1.73h.1v17.74h-1.84l-1.17,5.06h18.25v-3.35c0-.95-.77-1.71-1.71-1.71Z"
-              />
-              <path
-                d="M56.43,70.98l1.17,5.06h7.81v15.7c0,1.69-3.75,2.04-6.06,2.04s-6.06-.35-6.06-2.04v-20.76h-11.28l1.17,5.06h5.05v16.09c0,4.13,4.67,6.72,11.12,6.72s11.13-2.69,11.13-6.72v-21.15h-14.05Z"
-              />
-              <polygon
-                points="96.48 0 97.65 5.06 105.91 5.06 98.28 21.57 88.31 0 74.14 0 75.31 5.06 85.09 5.06 95.72 27.85 95.72 27.87 100.81 27.87 100.81 27.86 100.83 27.87 113.84 0 96.48 0"
-              />
-              <path
-                d="M42.01,23.19v-3.87c0-2.51-1.65-4.71-4.06-5.41l-15.6-4.55c-.8-.23-1.35-.97-1.35-1.8v-1.15c0-.74.6-1.35,1.35-1.35h14.61v1.11c0,.93.64,1.74,1.55,1.95l3.51.81V0h-21.41c-2.58,0-4.67,2.09-4.67,4.67v3.86c0,2.5,1.68,4.72,4.08,5.42l15.58,4.5c.8.23,1.36.97,1.36,1.81v1.2c0,.74-.6,1.35-1.35,1.35h-14.61v-1.11c0-.93-.64-1.74-1.55-1.95l-3.51-.81v8.94h21.41c2.58,0,4.67-2.09,4.67-4.67Z"
-              />
-              <path
-                d="M86.02,24.52c0-.95-.77-1.71-1.71-1.71h-14.74V5.06h1.83L72.58,0h-9.9s0,3.33,0,3.33c0,.96.77,1.73,1.73,1.73h.1v17.74h-1.84l-1.17,5.06h24.53v-3.35Z"
-              />
-              <path
-                d="M154.45,22.8h-1.84l-1.17,5.06h9.9v-3.33c0-.96-.77-1.73-1.73-1.73h-.09v-6.34h5.25c5.01,11.06,14.35,11.4,15.44,11.4h.43v-5.05h-.38c-5.09-.17-8.3-3.79-9.94-6.35h2.47v-.02c4.36-.21,7.84-3.81,7.84-8.21s-3.69-8.23-8.23-8.23h-.39s-19.4,0-19.4,0v3.33c0,.96.77,1.73,1.73,1.73h.1v6.34h-6.28l-1.17,5.06h7.45v6.34ZM159.51,5.06h12.89c1.75,0,3.17,1.42,3.17,3.17s-1.42,3.17-3.17,3.17h-12.89v-6.34Z"
-              />
-              <path
-                d="M57.15,24.53c0-.96-.77-1.73-1.73-1.73h-.09V5.06h1.83L58.33,0h-3.01s-5.06,0-5.06,0h-1.83v3.33c0,.96.77,1.73,1.73,1.73h.1v17.74h-5.05l-1.17,5.06h13.11s0-3.33,0-3.33Z"
-              />
-              <path
-                d="M145.62,24.53c0-.96-.77-1.73-1.73-1.73h-16.87v-6.34h15.32s1.17-5.06,1.17-5.06h-16.49v-6.34h17.42L145.62,0h-25.49s0,3.33,0,3.33c0,.96.77,1.73,1.73,1.73h.1v6.34h-1.83v3.33c0,.96.77,1.73,1.73,1.73h.1v6.34h-1.84l-1.17,5.06h26.68v-3.33Z"
-              />
-            </g>
-
-            <g class="sbReg">
-              <path
-                d="M192.16,9.61l-1.55-3.1h-1.39v3.1h-1.12V2.26h2.85c1.39,0,2.28.9,2.28,2.15,0,1.05-.64,1.72-1.47,1.95l1.69,3.25h-1.3ZM190.87,3.26h-1.65v2.3h1.65c.74,0,1.25-.42,1.25-1.15s-.51-1.16-1.25-1.16Z"
-              />
-              <path
-                d="M190.54,12.06c-3.32,0-6.03-2.7-6.03-6.03s2.7-6.03,6.03-6.03,6.03,2.7,6.03,6.03-2.7,6.03-6.03,6.03ZM190.54.95c-2.8,0-5.08,2.28-5.08,5.08s2.28,5.08,5.08,5.08,5.08-2.28,5.08-5.08-2.28-5.08-5.08-5.08Z"
-              />
-            </g>
-          </svg>
-
-          <g class="rays">
-            <line class="ray r0" x1="38" y1="50" x2="38" y2="15" />
-            <line class="ray r1" x1="38.5" y1="50" x2="48" y2="14.5" />
-            <line class="ray r2" x1="38.5" y1="50" x2="62" y2="14.5" />
-            <line class="ray r3" x1="38.5" y1="50" x2="94" y2="14.5" />
-            <line class="ray r4" x1="38.5" y1="50" x2="100" y2="50" />
-            <line class="ray r5" x1="38.5" y1="50" x2="94" y2="84" />
-            <line class="ray r6" x1="38.5" y1="50" x2="62" y2="84" />
-            <line class="ray r7" x1="38.5" y1="50" x2="48" y2="84" />
-            <line class="ray r8" x1="38" y1="50" x2="38" y2="85" />
-          </g>
-
-          <svg
-            class="sloganBox"
-            x="82"
-            y="45.5"
-            width="18"
-            height="6"
-            viewBox="0 0 280 40"
-            preserveAspectRatio="xMinYMid meet"
-          >
-            <text class="sloganText" x="0" y="28">Speedy Comfort, Precise Renewal.</text>
-          </svg>
-        </svg>
-      </div>
-
-      <!-- <div class="scrollHint" v-show="introMode === 'play' && step === 0">
-        <span>Scroll</span><span class="arrow">↓</span>
-      </div> -->
-    </section>
-
-    <div class="contentScreen" :style="contentStyle">
-    <!-- Brand statement -->
-    <section class="homeSection brandSection">
+   <div class="fullScreenCenter">
       <div class="sectionInner sectionNarrow">
         <div class="eyebrow">Silver Bullet<sup>®</sup></div>
         <h1 class="brandHeadline">
-          In the fields of health &amp; beauty,<br />
-          we solve difficult problems<br />
-          in a simple way.
+          Under Construction
         </h1>
-      </div>
-    </section>
+</div>
 
-    <!-- Series overview -->
-    <section class="homeSection seriesSection">
-      <div class="sectionInner">
-        <div class="seriesTop">
-          <h2 class="sectionTitle centerTitle">INNOVATIVE SOOTHING SERIES</h2>
-
-          <p class="seriesIntro">
-            The Innovative Soothing Series delivers fast-acting &amp; precise soothing sensations
-            to areas of skin experiencing stress, tightness or heat, while supporting the skin’s
-            natural renewal process. Though applied to skin, its calming effect resonates beyond –
-            creating a deep &amp; holistic sense of ease and balance.
-          </p>
-        </div>
-
-        <div class="seriesGrid">
-          <router-link
-            class="seriesProductLink leftProduct"
-            :to="withLang('/eu/products/soothing-gel')"
-          >
-            <img
-              class="seriesProductImg bodyImg"
-              src="/img/soothinggel.png"
-              alt="Silver Bullet Innovative Soothing Gel"
-            />
-            <div class="seriesProductName">
-              Silver Bullet<sup>®</sup><br />
-              Innovative Soothing Gel
-            </div>
-          </router-link>
-
-          <div class="seriesCenter">
-            <div class="seriesCenterBig">1-5 mins</div>
-            <div class="seriesCenterSub">Speedy Comfort</div>
-
-            <div class="seriesCenterStack">
-              <div>Proprietary Marine<br />Biotechnology</div>
-              <div class="plusSign">+</div>
-              <div>Precise Formulation<br />Systems</div>
-            </div>
-          </div>
-
-          <router-link
-            class="seriesProductLink rightProduct"
-            :to="withLang('/eu/products/post-procedure-gel')"
-          >
-            <img
-              class="seriesProductImg faceImg"
-              src="/img/postproceduresgel.png"
-              alt="Silver Bullet Innovative Soothing Hydration Face Gel"
-            />
-            <div class="seriesProductName">
-              Silver Bullet<sup>®</sup><br />
-              Innovative Soothing Hydration<br />
-              Face Gel
-            </div>
-          </router-link>
-        </div>
-      </div>
-    </section>
-
-    <!-- Product teaser 1 -->
-    <section class="homeSection productTeaser teaserBlue">
-      <div class="sectionInner">
-        <div class="teaserGrid">
-          <div class="teaserMedia">
-            <router-link :to="withLang('/eu/products/soothing-gel')" class="teaserImageLink">
-              <img
-                class="teaserProductImg teaserBodyImg"
-                src="/img/soothinggel.png"
-                alt="Innovative Soothing Gel"
-              />
-            </router-link>
-            <div class="teaserPackSize">50mL / 1.7 fl.oz | 10mL / 0.34 fl.oz</div>
-          </div>
-
-          <div class="teaserContent lightText">
-            <h2 class="teaserTitle">INNOVATIVE<br />SOOTHING GEL</h2>
-            <p class="teaserTagline">Specifically designed for discomfort in joint areas</p>
-
-            <div class="teaserFeatureList">
-              <div class="teaserFeatureItem">
-                <div class="teaserFeatureNum">1</div>
-                <div class="teaserFeatureText">1–5 mins speedy comfort</div>
-              </div>
-              <div class="teaserFeatureItem">
-                <div class="teaserFeatureNum">2</div>
-                <div class="teaserFeatureText">Fragrance-free, natural aqua-based feel</div>
-              </div>
-              <div class="teaserFeatureItem">
-                <div class="teaserFeatureNum">3</div>
-                <div class="teaserFeatureText">Deep and long-lasting soothing effect</div>
-              </div>
-            </div>
-
-            <router-link class="ctaBtn ctaBtnLight" :to="withLang('/eu/products/soothing-gel')">
-              View Product Detail
-            </router-link>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Product teaser 2 -->
-    <section class="homeSection productTeaser teaserBlue">
-      <div class="sectionInner">
-        <div class="teaserGrid reverseGrid">
-          <div class="teaserContent lightText">
-            <h2 class="teaserTitle">INNOVATIVE SOOTHING<br />HYDRATION FACE GEL</h2>
-            <p class="teaserTagline">Specifically designed for post-aesthetic care</p>
-
-            <div class="supportTitleRow">
-              <span class="supportSquare"></span>
-              <span>4 Dimensions of skin support</span>
-            </div>
-
-            <div class="teaserSupportList">
-              <div class="supportItem">
-                <div class="teaserFeatureNum">1</div>
-                <div>
-                  <div class="supportItemTitle">Speedy soothing</div>
-                  <div class="supportItemText">Instant soothing sensation in 1~5 minutes</div>
-                </div>
-              </div>
-
-              <div class="supportItem">
-                <div class="teaserFeatureNum">2</div>
-                <div>
-                  <div class="supportItemTitle">Moisture Balance</div>
-                  <div class="supportItemText">Fast hydration and long-lasting moisture retention</div>
-                </div>
-              </div>
-
-              <div class="supportItem">
-                <div class="teaserFeatureNum">3</div>
-                <div>
-                  <div class="supportItemTitle">Barrier Support</div>
-                  <div class="supportItemText">
-                    Helps reinforce skin barrier function with continued use
-                  </div>
-                </div>
-              </div>
-
-              <div class="supportItem">
-                <div class="teaserFeatureNum">4</div>
-                <div>
-                  <div class="supportItemTitle">Visible Refinement</div>
-                  <div class="supportItemText">
-                    Delivers a refined, healthy-looking appearance over time
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <router-link
-              class="ctaBtn ctaBtnLight"
-              :to="withLang('/eu/products/post-procedure-gel')"
-            >
-              View Product Detail
-            </router-link>
-          </div>
-
-          <div class="teaserMedia">
-            <router-link
-              :to="withLang('/eu/products/post-procedure-gel')"
-              class="teaserImageLink"
-            >
-              <img
-                class="teaserProductImg teaserFaceImg"
-                src="/img/postproceduresgel.png"
-                alt="Innovative Soothing Hydration Face Gel"
-              />
-            </router-link>
-            <div class="teaserPackSize">50mL / 1.7 fl.oz | 15mL / 0.51 fl.oz</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact CTA -->
-    <section class="homeSection contactCtaSection">
-      <div class="sectionInner sectionNarrow centerCta">
-        <div class="sectionKicker">CONTACT</div>
-        <h2 class="sectionTitle">For partnership or product inquiries</h2>
-        <p class="ctaText">
-          Please contact us for further product information, distribution opportunities,
-          or professional business inquiries.
-        </p>
-        <router-link class="ctaBtn" :to="withLang('/contact')">
-          Contact Us
-        </router-link>
-      </div>
-    </section>
   </div></div>
 </template>
 
@@ -448,6 +139,7 @@ skipIntroButShowHero() {
 /* =========================
    Hero animation screen
    ========================= */
+
 .heroScreen {
     position: fixed;
   inset: 0;
@@ -674,7 +366,16 @@ skipIntroButShowHero() {
 .centerTitle {
   text-align: center;
 }
-
+.fullScreenCenter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* 垂直居中 */
+  align-items: center;     /* 水平居中 */
+min-height: 60vh; /* 屏幕高度的 60%，不会太高 */
+  max-height: calc(100vh - 100px); /* 留给 footer 的空间 */
+  width: 100%;
+  text-align: center;
+}
 /* =========================
    Brand statement
    ========================= */
@@ -687,7 +388,7 @@ skipIntroButShowHero() {
   font-size: 4rem;
   line-height: 1.08;
   letter-spacing: -0.06em;
-  font-weight: 400;
+  font-weight: 900;
   color: #201d1d;
 }
 
